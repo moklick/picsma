@@ -216,15 +216,17 @@ aside .previewArea img{
 #hiddenImage {
 	display: none;
 }
-
-#canvas {
-	padding: 10px;
+.main-img{
+	padding: 10px;picsma.js:2
 	background: url('../img/ressources/noise.png') repeat top left #a6a5a7;
 	display: block;
 	cursor: pointer;
 	position: relative;
 	z-index: 4;
 	max-width:780px;
+}
+#canvas{
+	display:none;
 }
 .settingSlider {
 	background: none repeat scroll 0 0 rgba(22,22,22,0.75);
