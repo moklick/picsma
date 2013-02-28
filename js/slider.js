@@ -25,21 +25,24 @@ $(document).ready(function() {
 				slide: function( event, ui ) {
 					var contrast = $('#contrast').slider("value")/100;
 					var brightness = $('#brightness').slider("value");
-					updateImage(contrast, brightness);
+					//updateImage(contrast, brightness);
 			}});	
 		});
 	
 		//toggle settings -contrast, saturation, exposure
-		$("#settings").toggle(function(){
-			$("#sliderArea p").animate({opacity:1},"slow");
-			$("#sliderArea").animate({height:150, width:300},"slow");
-			$("#overlay").show();	
-		}, function(){
-			$("#sliderArea p").animate({opacity:0},"slow");
-			$("#sliderArea").animate({height:20, width:22},"slow");
-			$("#overlay").hide();
-		} );
-		
+		$("#sliderArea").hide();
+	$("#sliderArea").draggable();
+	
+	$("#settingsBtn").click(function(){
+		$("#sliderArea").fadeIn("600");
+		if($(this).hasClass('active')){
+			$(this).removeClass('active');
+			$("#sliderArea").fadeOut("600");
+			
+		}else{
+			$(this).addClass('active');
+		}
+	});
 		$("#settings").hover(
 			function(){$("#sliderArea").addClass("sliderAreaHover");},
 			function(){$("#sliderArea").removeClass("sliderAreaHover")
@@ -51,6 +54,7 @@ $(document).ready(function() {
 
 		
 });
+
 
 
 function updateImage(contrast, brightness) {
