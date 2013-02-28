@@ -49,4 +49,9 @@ $(function () {
         })(file);
         reader.readAsDataURL(file);
     }
+    var exampleImg= new Image();
+    exampleImg.src='../img/ressources/example.jpg';
+    exampleImg.addEventListener('load',function(){
+        ctx.drawImage(exampleImg,0,0);
+    })
 })
