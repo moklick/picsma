@@ -1,118 +1,112 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8" />
-<title>PICSMA &ndash; upload and destroy</title>
-<link type="text/css" rel="stylesheet"
-	href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
-<link rel="stylesheet" type="text/css"
-	href="css/style.css" />
-<script type="text/javascript"
-	src="js/jquery.js"></script>
-<script type="text/javascript"
-	src="js/jquery-ui.js"></script>
-<link rel="stylesheet"
-	href="css/ui-lightness/jquery-ui-1.8.16.custom.css"
-	type="text/css" />
-<script type="text/javascript"
-	src="js/general.js"></script>
-</head>
-<body>
-	<div id="overlay"></div>
-	<div id="wrapper">
-		<header>
-			<nav>
-				<ul class="buttonList">
-					<li><a class="sepWhite" href="#"><span class="icon navHelp">Help</span>
-					</a></li>
-					<li><a class="sepWhite" href="#"><span class="icon navContact">Contact</span>
-					</a></li>
-					<li><a href="#"><span class="icon navAbout">About</span> </a></li>
-				</ul>
-			</nav>
-			<div class="logoWrapper">
-				<div class="mainlogo"></div>
-			</div>
-
-			<div id="uploadArea">
-				<form id="uploadForm" action="#"
-					method="post" enctype="multipart/form-data">
-					<input type="file" name="uploadImg" id="uploadImg" /> 
-					<input id="uploadBtn" type="submit" value="Hochladen" name="uploadBtn">
-				</form>
-				
-				<form id="dndUpload" action="#" method="post">
-					<textarea id="imgData" name="imgData">
-						</textarea>
-					<input id="imgDataSubmit" type="submit" name="imgDataSubmit">
-				</form>
-			</div>
-			<div class="clear"></div>
-
-			<div class="buttonArea">
-				<ul class="buttonList">
-					<li><a href="#" id="settingsBtn" class="sepWhite"><span class="icon settingsIcon">Settings</span>
-					</a></li>
-					<li><a href="#" id="saveBtn"><span class="icon saveIcon">Save</span> </a></li>
-				</ul>
-			</div>
-			<div class="clear"></div>
-		</header>
-		<div id="content" class="contentArea">
-		
-			<aside>
-				<div id="preview" class="previewArea roundedFive">
-					<img class="previewImage" id="filter0" src="http://placekitten.com/75/75" /> 
-					<img class="previewImage" id="filter1" src="http://placekitten.com/75/75" /> 
-					<img class="previewImage" id="filter2" src="http://placekitten.com/75/75" /> 
-					<img class="previewImage" id="filter3" src="http://placekitten.com/75/75" /> 
-					<img class="previewImage" id="filter4" src="http://placekitten.com/75/75" />
+	<head>
+		<meta charset="utf-8" />
+		<title>picsma - HTML5 Image Manipulation</title>
+		<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="js/jquery-ui.js"></script>
+		<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" type="text/css" />
+		<script src="js/general.js"></script>
+		<script src="js/slider.js"></script>
+	</head>
+	<body>
+		<div id="overlay"></div>
+		<div id="wrapper">
+			<header>
+				<nav>
+					<ul class="buttonList">
+						<li><a class="sepWhite" href="#"><span class="icon navHelp">Help</span>
+						</a></li>
+						<li><a class="sepWhite" href="#"><span class="icon navContact">Contact</span>
+						</a></li>
+						<li><a href="#"><span class="icon navAbout">About</span> </a></li>
+					</ul>
+				</nav>
+				<div class="logoWrapper">
+					<div class="mainlogo"></div>
 				</div>
-				
-				<div id="filterCategories" class="filterCat">
-					<div id="c0" class="filterBtn" style="margin-top: 10px;">
-						Black<br />and white
-					</div>
-					<div id="c1" class="filterBtn">Retro</div>
-					<div id="c2" class="filterBtn">8-bit</div>
-					<div id="c3" class="filterBtn">HDR</div>
-					<div id="c4" class="filterBtn">Neon</div>
+
+				<div id="uploadArea">
+					<form id="uploadForm" action="#"
+						method="post" enctype="multipart/form-data">
+						<input type="file" name="uploadImg" id="uploadImg" /> 
+						<input id="uploadBtn" type="submit" value="Hochladen" name="uploadBtn">
+					</form>
+					
+					<form id="dndUpload" action="#" method="post">
+						<textarea id="imgData" name="imgData">
+							</textarea>
+						<input id="imgDataSubmit" type="submit" name="imgDataSubmit">
+					</form>
 				</div>
 				<div class="clear"></div>
-			</aside>
+
+				<div class="buttonArea">
+					<ul class="buttonList">
+						<li><a href="#" id="settingsBtn" class="sepWhite"><span class="icon settingsIcon">Settings</span>
+						</a></li>
+						<li><a href="#" id="saveBtn"><span class="icon saveIcon">Save</span> </a></li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</header>
+			<div id="content" class="contentArea">
 			
-			<div id="imageArea" class="canvasArea">
-				<img id="uploadedImg" src="http://placekitten.com/800/600"
-					style="display: none;"> 
-					<img id="progressIcon" src="img/ressources/ajax-loader.gif" />
-				<canvas id="canvas" class="shadowLess"></canvas>
-				<canvas id="hiddenCanvas" style="display: none;"></canvas>
-			
-						<div id="sliderArea" class="settingSlider">
-						<span class="dragMe">Drag me!</span>
-							<p>
-								<label for="contrast_val">Contrast:</label>
-								<input type="text"
-								id="contrast_val" />
-							</p>
-							<div id="contrast" class="slider"></div>
-							<p>
-								<label for="brightness">Brightness:</label>
-								<input
-								type="text" id="brightness_val" />
-							</p>
-							<div id="brightness"></div>
-							<p>
-								<label for="saturation_val">Saturation:</label>
-								<input type="text"
-								id="saturation_val" />
-							</p>
-							<div id="saturation"></div>
+				<aside>
+					<div id="preview" class="previewArea roundedFive">
+						<img class="previewImage" id="filter0" src="http://placekitten.com/75/75" /> 
+						<img class="previewImage" id="filter1" src="http://placekitten.com/75/75" /> 
+						<img class="previewImage" id="filter2" src="http://placekitten.com/75/75" /> 
+						<img class="previewImage" id="filter3" src="http://placekitten.com/75/75" /> 
+						<img class="previewImage" id="filter4" src="http://placekitten.com/75/75" />
+					</div>
+					
+					<div id="filterCategories" class="filterCat">
+						<div id="c0" class="filterBtn" style="margin-top: 10px;">
+							Black<br />and white
 						</div>
+						<div id="c1" class="filterBtn">Retro</div>
+						<div id="c2" class="filterBtn">8-bit</div>
+						<div id="c3" class="filterBtn">HDR</div>
+						<div id="c4" class="filterBtn">Neon</div>
+					</div>
+					<div class="clear"></div>
+				</aside>
 				
+				<div id="imageArea" class="canvasArea">
+					<img id="uploadedImg" src="http://placekitten.com/800/600"
+						style="display: none;"> 
+						<img id="progressIcon" src="img/ressources/ajax-loader.gif" />
+					<canvas id="canvas" class="shadowLess"></canvas>
+					<canvas id="hiddenCanvas" style="display: none;"></canvas>
+				
+							<div id="sliderArea" class="settingSlider">
+							<span class="dragMe">Drag me!</span>
+								<p>
+									<label for="contrast_val">Contrast:</label>
+									<input type="text"
+									id="contrast_val" />
+								</p>
+								<div id="contrast" class="slider"></div>
+								<p>
+									<label for="brightness">Brightness:</label>
+									<input
+									type="text" id="brightness_val" />
+								</p>
+								<div id="brightness"></div>
+								<p>
+									<label for="saturation_val">Saturation:</label>
+									<input type="text"
+									id="saturation_val" />
+								</p>
+								<div id="saturation"></div>
+							</div>
+					
+				</div>
+				<div style="clear: left;"></div>
 			</div>
-			<div style="clear: left;"></div>
 		</div>
-	</div>
-</body>
+	</body>
 </html>
