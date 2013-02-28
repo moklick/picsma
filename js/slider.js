@@ -1,8 +1,4 @@
-	    
-	    
-
 $(document).ready(function() {
-	console.log('start');
 		//set initial values and handle onslide event
 		$("#sliderArea > div").each(function(){
 			var id = $(this).attr("id");
@@ -19,7 +15,7 @@ $(document).ready(function() {
 				case "exposure": val = 0;break;
 				default: val = 50;break;
 			}
-			console.log('a');
+
 			$("#" + id).slider({
 				range: "min",
 				value: val,
