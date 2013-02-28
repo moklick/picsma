@@ -1,6 +1,6 @@
 window.pTools = {
 
-    getEndianess: function () {
+    isBigEndian: function () {
         var endianCanvas = document.createElement('canvas');
         endianCanvas.width = endianCanvas.height = 1;
         var endianData = endianCanvas.getContext('2d').getImageData(0, 0, 1, 1).data;
