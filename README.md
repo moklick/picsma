@@ -1,4 +1,4 @@
 picsma
 ======
 
-HTML5 image manipulation tool.
+HTML5/CSS3/JS image manipulation tool.
