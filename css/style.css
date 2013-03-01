@@ -81,45 +81,31 @@ span.icon {
 	padding-left:13px;
 	
 }
-.icon.about{
+.icon.about {
 	background-position:-10px -120px;
 	padding-left:22px;
 }
-.icon.contact{
+.icon.contact {
 	background-position:-11px -53px;
 	padding-left:15px;
 }
 
-.menu li .separator-white{
+.menu li .separator-white {
 	border-right:1px solid rgba(255,255,255,0.2);
 }
 .menu li .separator-black{
 	border-left:1px solid rgba(0,0,0,0.2);
 }
-header .logoWrapper{
-	padding:15px 0 5px 0;
-	float:left;
-}
-header .mainlogo{
+
+.logo {
 	background: url('../img/ressources/picsma_sprite.png') no-repeat 0 0;
-	display:block;
 	width: 106px;
 	height: 48px; 
-}
-header #uploadArea form {
+	margin:15px 0 5px 0;
 	float:left;
 }
 
-header #fakeUpload {
-	display: none;
-}
-header #fakeUpload a {
-	display: none;
-}
-header #uploadImg {
-	display: none;
-}
-header .buttonArea{
+.options {
 	float:left;
 	background-color: #343d3f;
 	margin-left:210px;
@@ -132,20 +118,21 @@ header .buttonArea{
     border-radius: 4px 4px 0 0; /* Opera 10.5, IE9, Saf5, Chrome, FF4, iOS 4, Android 2.1+ */
 }
 
-header .buttonArea .settingsIcon{
+.icon.settings {
     background-position: -14px -299px;
     padding-left: 17px;
 }
-header .buttonArea .saveIcon{
+
+.icon.save {
 	background-position:-14px -253px;
 	padding-left: 15px;
 }
 
-.contentArea{
+.main {
 	position:relative;
 }
 
-aside{
+aside {
 	width:200px;
 	float:left;
 }
@@ -186,7 +173,7 @@ aside .filterCat div:hover{
 aside .filterBtn{
 	cursor:pointer;
 }
-aside .previewArea{
+aside .preview-container{
     background: none repeat scroll 0 0 #343d3f;
     float: right;
     margin-right: 10px;
@@ -197,7 +184,7 @@ aside .previewArea{
     -moz-box-shadow: 0px 3px 2px 1px rgba(0,0,0,0.5); ; /* FF3.5 - 3.6 */
     box-shadow: 0px 3px 2px 1px rgba(0,0,0,0.5); /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
 }
-aside .previewArea img{
+aside .preview-container img{
  	background: none repeat scroll 0 0 #A5A5A9;
     margin-bottom: 10px;
     padding: 4px;
@@ -226,9 +213,7 @@ aside .previewArea img{
 	z-index: 4;
 	max-width:780px;
 }
-#canvas{
-	display:none;
-}
+
 .settingSlider {
 	background: none repeat scroll 0 0 rgba(22,22,22,0.75);
 	border: 1px solid rgba(255,255,255,0.2);
@@ -282,32 +267,32 @@ aside .previewArea img{
 	background: none;
 }
 
-.roundedTen {
+.rounded-ten {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	-khtml-border-radius: 10px;
 	border-radius: 10px;
 }
-.roundedFive {
+.rounded {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
 }
-.roundedTwo {
+.rounded-two {
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	-khtml-border-radius: 2px;
 	border-radius: 2px;
 }
-.roundedThree {
+.rounded-three {
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
 }
 
-.roundedTwoTop{
+.rounded-two-top{
 	-moz-border-radius-topright: 3px;
 	-webkit-border-radius-topright: 3px;
 	-o-border-radius-topright: 3px;

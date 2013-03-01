@@ -33,7 +33,7 @@ $(document).ready(function() {
 		$("#sliderArea").hide();
 	$("#sliderArea").draggable();
 	
-	$("#settingsBtn").click(function(){
+	$("#settings-button").click(function(){
 		$("#sliderArea").fadeIn("600");
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
