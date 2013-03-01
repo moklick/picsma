@@ -2,6 +2,7 @@ $(document).ready(function() {
     initSliders();
 	handleSettingsButton();
 	handleCategorieButtons();
+	handleCloseButton();
 	resetSlider();
 });
 
@@ -11,14 +12,14 @@ var handleSettingsButton = function(){
 	$("#slider-container").draggable();
 	
 	$("#settings-button").click(function(){
-		console.log($(this));
 		$("#slider-container").fadeIn("600");
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
 			$("#slider-container").fadeOut("600");
 			
 		}else{
-			$(this).addClass('active');resetSlider
+			$(this).addClass('active');
+			resetSlider();
 		}
 	});
 };
@@ -57,15 +58,17 @@ var initSliders = function(){
 };
 
 var handleCategorieButtons = function(){
-		$("#filter-categories div").click(function() {
-			currentCategory = $(this).attr("id");		
-			$('.filter-button').click(function(){
-				$('.filter-button').removeClass('active');
-				$(this).addClass('active');
-		});	
-			});
+	$(".filter-button").click(function() {	
+		$('.filter-button').removeClass('active');
+		$(this).addClass('active');
+	});	
+};
 
-
+var handleCloseButton = function(){
+	$('.close-button').click(function(e){
+		    $('#settings-button').removeClass('active');
+			$("#slider-container").fadeOut("250");
+	});
 };
 
 var resetSlider = function(){	
