@@ -1,6 +1,22 @@
-CanvasRenderingContext2D.prototype.picsma = {
+(function(){
+ var c2dp =  CanvasRenderingContext2D.prototype;
+
+c2dp.grayscale = function () {
+        console.log(this);
+        var imgdata = this.getImageData(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+        var data = imgdata.data;
+        for (var i = data.length - 4; i >= 0; i = i - 4)
+            data[i] = data[i + 1] = data[i + 2] = ~~(data[i] * .299 + data[i + 1] * .587 + data[i + 2] * .114)
+        this.putImageData(imgdata, 0, 0);
+    };
+
+
+
+
+  /*  CanvasRenderingContext2D.prototype = {
 
     grayscale: function () {
+        console.log(this);
         var imgdata = this.getImageData(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
         var data = imgdata.data;
         for (var i = data.length - 4; i >= 0; i = i - 4)
@@ -100,3 +116,5 @@ CanvasRenderingContext2D.prototype.picsma = {
         this.putImageData(imgdata, 0, 0);
     }
 }
+      */
+})();
