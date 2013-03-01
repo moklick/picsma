@@ -2,31 +2,26 @@ html,body,div, span, nav,ul,li, header, aside,a,canvas,img, p, h1, h2, input, se
 	padding: 0;
 	margin: 0;
 }
+
 a{
 	color:#999;
 }
+
 img{
 	border:none;
 }
+
 .clear{
 	clear:both;
 }
+
 html, body {
     background: url("../img/ressources/global_bg.jpg") repeat #222;
 	color: #999;
-	font-family: 'Open Sans', Arial, Verdana;
+	font-family: 'Open Sans', Arial;
 	font-size:12px;
 }
-#overlay {
-	bottom:0;
-	width: 100%;
-	background-color: rgba(55,55,55,0.75);
-	z-index: 2;
-	top:-8px;
-	position: fixed;
-	cursor: pointer;
-	display: none;
-}
+
 #wrapper {
 	width: 1000px;
 	margin: 0 auto;
@@ -269,9 +264,7 @@ aside .preview-container canvas{
 }
 
 .slider .ui-widget-header {
-    background:#343D3F;
-    border: 1px solid rgba(255,255,255,0.5);
-    border-radius: 4px;
+    background:rgba(229, 243, 247,0.1);
 }
 
 .slider input {
