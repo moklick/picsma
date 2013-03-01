@@ -137,17 +137,17 @@ aside {
 	float:left;
 }
 
-aside .filterCat{
+aside .filter-menu{
   	float: right;
     width: 75px;
 }
-aside .filterCat div.active{
+aside .filter-menu > div.active{
     opacity: 1;
     padding: 3px 5px 4px;
     width: 75px;
     margin-right:-1px;
 }
-aside .filterCat div{
+aside .filter-menu > div{
 	background-color: #343d3f;
 	border-bottom:1px solid rgba(255,255,255,0.25);
 	border-left:1px solid rgba(255,255,255,0.25);
@@ -166,11 +166,11 @@ aside .filterCat div{
 	-o-transition: width 0.2s linear;
 	transition: width 0.2s linear;
 }
-aside .filterCat div:hover{
+aside .filter-menu div:hover{
     padding: 3px 5px 4px;
     width: 75px;
 }
-aside .filterBtn{
+aside .filter-button{
 	cursor:pointer;
 }
 aside .preview-container{
@@ -191,7 +191,7 @@ aside .preview-container img{
     cursor:pointer;
 }
 .canvasArea{
-	width:800px;
+	width:735px;
 	float:left;
 	position:relative;
 }
