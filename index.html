@@ -8,6 +8,8 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<script src="js/jquery-ui.js"></script>
 		<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" type="text/css" />
+		<script src="js/pTools.js"></script>
+		<script src="js/filters.js"></script>
 		<script src="js/picsma.js"></script>
 		<script src="js/slider.js"></script>
 	</head>
@@ -41,31 +43,29 @@
 			
 				<aside>
 					<div id="preview" class="preview-container rounded">
-						<img class="preview-image" id="filter0" src="http://placekitten.com/75/75" /> 
-						<img class="preview-image" id="filter1" src="http://placekitten.com/75/75" /> 
-						<img class="preview-image" id="filter2" src="http://placekitten.com/75/75" /> 
-						<img class="preview-image" id="filter3" src="http://placekitten.com/75/75" /> 
-						<img class="preview-image" id="filter4" src="http://placekitten.com/75/75" />
+						<canvas class="preview-image" id="filter0"></canvas>
+						<canvas class="preview-image" id="filter1"></canvas>
+						<canvas class="preview-image" id="filter2"></canvas>
+						<canvas class="preview-image" id="filter3"></canvas>
 					</div>
 					
 					<div id="filter-categories" class="filter-menu">
 						<div id="cat0" class="filter-btn" style="margin-top: 10px;">Black<br />and white
 						</div>
-						<div id="cat1" class="filter-btn">Retro</div>
-						<div id="cat2" class="filter-btn">8-bit!</div>
-						<div id="cat3" class="filter-btn">HDR</div>
-						<div id="cat4" class="filter-btn">Neon</div>
+						<div id="cat1" class="filter-btn">Diffusion</div>
+						<div id="cat2" class="filter-btn">Median</div>
+						<div id="cat3" class="filter-btn">Raster</div>
 					</div>
 					<div class="clear"></div>
 				</aside>
 				
-				<div id="imageArea" class="canvasArea">
-					<img id="progressIcon" src="img/ressources/ajax-loader.gif" />
+				<div id="image-area" class="image-container">
+					<img class="progress-loader" src="img/ressources/ajax-loader.gif" />
 					
-					<canvas id="canvas" class="main-img shadowLess"></canvas>
+					<canvas id="canvas" class="main-img shadow-less"></canvas>
 				
-							<div id="sliderArea" class="settingSlider">
-							<span class="dragMe">Drag me!</span>
+							<div id="slider-container" class="settingSlider">
+							<span class="draggable">Drag me!</span>
 								<p>
 									<label for="contrast_val">Contrast:</label>
 									<input type="text"

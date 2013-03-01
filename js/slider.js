@@ -1,6 +1,6 @@
 $(document).ready(function() {
 		//set initial values and handle onslide event
-		$("#sliderArea > div").each(function(){
+		$("#slider-container > div").each(function(){
 			var id = $(this).attr("id");
 			var val = 0;
 			var min = 0;
@@ -12,7 +12,7 @@ $(document).ready(function() {
 			switch (id){
 				case "contrast":min = 100; max = 1000; val = 100; divisor = 100; step_width = 5; break;
 				case "brightness": min = -128; max = 128; val = 0;break;
-				case "exposure": val = 0;break;
+				case "saturation": min = 0; max = 10; val = 0;break;
 				default: val = 50;break;
 			}
 
@@ -25,27 +25,28 @@ $(document).ready(function() {
 				slide: function( event, ui ) {
 					var contrast = $('#contrast').slider("value")/100;
 					var brightness = $('#brightness').slider("value");
+					var saturation = $('#saturation').slider("value");
 					//updateImage(contrast, brightness);
 			}});	
 		});
 	
 		//toggle settings -contrast, saturation, exposure
-		$("#sliderArea").hide();
-	$("#sliderArea").draggable();
+		$("#slider-container").hide();
+	$("#slider-container").draggable();
 	
 	$("#settings-button").click(function(){
-		$("#sliderArea").fadeIn("600");
+		$("#slider-container").fadeIn("600");
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
-			$("#sliderArea").fadeOut("600");
+			$("#slider-container").fadeOut("600");
 			
 		}else{
 			$(this).addClass('active');
 		}
 	});
 		$("#settings").hover(
-			function(){$("#sliderArea").addClass("sliderAreaHover");},
-			function(){$("#sliderArea").removeClass("sliderAreaHover")
+			function(){$("#slider-container").addClass("slider-containerHover");},
+			function(){$("#slider-container").removeClass("slider-containerHover")
 		});
 		
 		$("#overlay").click(function(){
