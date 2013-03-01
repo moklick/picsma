@@ -12,7 +12,7 @@ $(document).ready(function() {
 			switch (id){
 				case "contrast":min = 100; max = 1000; val = 100; divisor = 100; step_width = 5; break;
 				case "brightness": min = -128; max = 128; val = 0;break;
-				case "saturation": min = 0; max = 10; val = 0;break;
+				case "saturation": min = 0; max = 100; val = 0; divisor = 10; break;
 				default: val = 50;break;
 			}
 
