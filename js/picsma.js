@@ -1,6 +1,7 @@
 $(function () {
     var maxW = 800, maxH = 600;
     var can = $('#canvas')[0], ctx = can.getContext('2d');
+    var BIGENDIAN = pTools.isBigEndian();
     var dropArea = document;
 
     dropArea.addEventListener('dragenter', stopDefault, false);
@@ -55,9 +56,14 @@ $(function () {
     var exampleImg= new Image();
     exampleImg.src= 'img/ressources/example.jpg';
     exampleImg.onload = function(){
-        console.log('example load');
         can.width=this.width;
         can.height=this.height;
         ctx.drawImage(this,0,0);
+        $('#filter0')[0].getContext('2d').drawImage(this,-100,-100);
+        $('#filter0')[0].getContext('2d').grayscale();
+        $('#filter1')[0].getContext('2d').drawImage(this,0,0);
+        $('#filter2')[0].getContext('2d').drawImage(this,0,0);
+        $('#filter3')[0].getContext('2d').drawImage(this,0,0);
     };
+
 })
