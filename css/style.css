@@ -31,9 +31,7 @@ html, body {
 	width: 1000px;
 	margin: 0 auto;
 }
-#uploadBtn {
-	display: none;
-}
+
 nav {
 	overflow:hidden;
 	background-color: #343d3f;
@@ -46,9 +44,11 @@ nav {
     -moz-border-radius: 0 0 4px 4px; /* FF1-3.6 */
     border-radius: 0 0 4px 4px; /* Opera 10.5, IE9, Saf5, Chrome, FF4, iOS 4, Android 2.1+ */
 }
+
 .menu {
 	list-style: none;
 }
+
 .menu li {
 	float:left;
 }
@@ -72,7 +72,7 @@ nav {
 	background-color: #434d4f;
 }
 
-span.icon {
+.icon {
 	background: url('../img/ressources/picsma_sprite.png') no-repeat 0 0;
 }
 
@@ -92,9 +92,6 @@ span.icon {
 
 .menu li .separator-white {
 	border-right:1px solid rgba(255,255,255,0.2);
-}
-.menu li .separator-black{
-	border-left:1px solid rgba(0,0,0,0.2);
 }
 
 .logo {
@@ -137,17 +134,19 @@ aside {
 	float:left;
 }
 
-aside .filter-menu{
+.filter-menu .filter-button.active {
+	opacity: 1;
+	padding: 3px 5px 4px;
+	width: 75px;
+	margin-right: -1px;
+}
+
+aside .filter-menu {
   	float: right;
     width: 75px;
 }
-aside .filter-menu > div.active{
-    opacity: 1;
-    padding: 3px 5px 4px;
-    width: 75px;
-    margin-right:-1px;
-}
-aside .filter-menu > div{
+
+.filter-menu .filter-button {
 	background-color: #343d3f;
 	border-bottom:1px solid rgba(255,255,255,0.25);
 	border-left:1px solid rgba(255,255,255,0.25);
@@ -161,19 +160,23 @@ aside .filter-menu > div{
 	width: 65px;
 	float:right;
 	opacity:0.75;
+	cursor:pointer;
 	-webkit-transition: width 0.2s linear;
 	-moz-transition: width 0.2s linear;
 	-o-transition: width 0.2s linear;
 	transition: width 0.2s linear;
 }
-aside .filter-menu div:hover{
+
+aside .filter-menu div:hover {
     padding: 3px 5px 4px;
     width: 75px;
 }
-aside .filter-button{
+
+aside .filter-button {
 	cursor:pointer;
 }
-aside .preview-container{
+
+aside .preview-container {
     background: none repeat scroll 0 0 #343d3f;
     float: right;
     margin-right: 10px;
@@ -184,6 +187,7 @@ aside .preview-container{
     -moz-box-shadow: 0px 3px 2px 1px rgba(0,0,0,0.5); ; /* FF3.5 - 3.6 */
     box-shadow: 0px 3px 2px 1px rgba(0,0,0,0.5); /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
 }
+
 aside .preview-container canvas{
  	background: none repeat scroll 0 0 #A5A5A9;
     margin-bottom: 10px;
@@ -192,17 +196,20 @@ aside .preview-container canvas{
     width:75px;
     height:75px;
 }
+
 .image-container{
 	width:735px;
 	float:left;
 	position:relative;
 }
+
 .progress-loader {
 	display: none;
 	position: absolute;
 	z-index: 6;
 	width:126px;
 }
+
 .main-img{
 	padding: 10px;
 	background: url('../img/ressources/noise.png') repeat top left #a6a5a7;
@@ -213,7 +220,7 @@ aside .preview-container canvas{
 	max-width:780px;
 }
 
-.settingSlider {
+.slider {
 	background: none repeat scroll 0 0 rgba(22,22,22,0.75);
 	border: 1px solid rgba(255,255,255,0.2);
 	border-radius: 4px;
@@ -226,39 +233,48 @@ aside .preview-container canvas{
 	z-index: 4;
 	position: absolute;
 }
-.settingSlider .draggable{
-	 float: right;
+
+.slider .draggable {
+	float: right;
     margin-right: -10px;
     opacity: 0.75;
 }
-.settingSlider  p {
+
+.slider  p {
 	padding:5px 0;
 }
-.settingSlider #contrast, .settingSlider #brightness, .settingSlider #saturation {
+
+.slider > div {
 	margin-left: 10px;
 }
-.settingSlider .ui-widget-content a {
+
+.slider .ui-widget-content a {
     background: url("../img/ressources/global_bg.png") repeat #343D3F;
 }
-.settingSlider .ui-widget-content a:hover {
+
+.slider .ui-widget-content a:hover {
 	background: url("../img/ressources/global_bg.png") repeat #454645;
 	cursor:pointer;
     border: 1px solid rgba(255,255,255,0.75);
 }
-.settingSlider .ui-widget-content a.ui-state-focus {
+
+.slider .ui-widget-content a.ui-state-focus {
     border: 1px solid rgba(255,255,255,0.75);
 }
-.settingSlider .ui-widget-content {
+
+.slider .ui-widget-content {
     background: none;
     border: 1px solid rgba(255,255,255,0.5);
     color: #333;
 }
-.settingSlider .ui-widget-header {
+
+.slider .ui-widget-header {
     background:#343D3F;
     border: 1px solid rgba(255,255,255,0.5);
     border-radius: 4px;
 }
-.settingSlider input {
+
+.slider input {
 	border: 0;
 	color: #999;
 	width: 50px;
@@ -266,67 +282,11 @@ aside .preview-container canvas{
 	background: none;
 }
 
-.rounded-ten {
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-khtml-border-radius: 10px;
-	border-radius: 10px;
-}
 .rounded {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
-}
-.rounded-two {
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
-}
-.rounded-three {
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
-}
-
-.rounded-two-top{
-	-moz-border-radius-topright: 3px;
-	-webkit-border-radius-topright: 3px;
-	-o-border-radius-topright: 3px;
-	border-radius-topright: 3px;
-	-moz-border-radius-topleft: 3px;
-	-webkit-border-radius-topleft: 3px;
-	-o-border-radius-topleft: 3px;
-	border-radius-topleft: 3px;
-}
-
-.roundedLeftBtn {
-	-moz-border-radius-bottomleft: 3px;
-	-webkit-border-radius-bottomleft: 3px;
-	-o-border-radius-bottomleft: 3px;
-	border-radius-bottomleft: 3px;
-	-moz-border-radius-topleft: 3px;
-	-webkit-border-radius-topleft: 3px;
-	-o-border-radius-topleft: 3px;
-	border-radius-topleft: 3px;
-}
-.roundedRightBtn {
-	-moz-border-radius-bottomright: 3px;
-	-webkit-border-radius-bottomright: 3px;
-	-o-border-radius-bottomright: 3px;
-	border-radius-bottomright: 3px;
-	-moz-border-radius-topright: 3px;
-	-webkit-border-radius-topright: 3px;
-	-o-border-radius-topright: 3px;
-	border-radius-topright: 3px;
-}
-.shadow {
-	/**-moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-	-webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-	-o-box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-	box-shadow: 1px 1px 2px rgba(0,0,0,0.5);**/
 }
 
 .shadow-less {
@@ -334,15 +294,4 @@ aside .preview-container canvas{
 	-webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 	-o-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 	box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-}
-
-.highlight {
-	-moz-box-shadow: 1px 1px 4px rgba(0,0,0,1);
-	-webkit-box-shadow: 1px 1px 4px rgba(0,0,0,1);
-	-o-box-shadow: 1px 1px 4px rgba(0,0,0,1);
-	box-shadow: 1px 1px 4px rgba(0,0,0,1);
-}
-
-#dndUpload {
-	display:none;
 }
