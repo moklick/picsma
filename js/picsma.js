@@ -49,10 +49,15 @@ $(function () {
         })(file);
         reader.readAsDataURL(file);
     }
-    var exampleImg= $('<img>');
-    exampleImg.attr('src', 'img/ressources/example.jpg');
-    exampleImg.load(function(){
+
+
+    /*   ENTRY POINT    */
+    var exampleImg= new Image();
+    exampleImg.src= 'img/ressources/example.jpg';
+    exampleImg.onload = function(){
         console.log('example load');
+        can.width=this.width;
+        can.height=this.height;
         ctx.drawImage(this,0,0);
-    }  )
+    };
 })
