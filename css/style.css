@@ -2,31 +2,22 @@ html,body,div, span, nav,ul,li, header, aside,a,canvas,img, p, h1, h2, input, se
 	padding: 0;
 	margin: 0;
 }
+
 a{
 	color:#999;
 }
-img{
-	border:none;
-}
+
 .clear{
 	clear:both;
 }
+
 html, body {
     background: url("../img/ressources/global_bg.jpg") repeat #222;
 	color: #999;
-	font-family: 'Open Sans', Arial, Verdana;
+	font-family: 'Open Sans', Arial;
 	font-size:12px;
 }
-#overlay {
-	bottom:0;
-	width: 100%;
-	background-color: rgba(55,55,55,0.75);
-	z-index: 2;
-	top:-8px;
-	position: fixed;
-	cursor: pointer;
-	display: none;
-}
+
 #wrapper {
 	width: 1000px;
 	margin: 0 auto;
@@ -40,9 +31,9 @@ nav {
 	border-bottom:1px solid rgba(255,255,255,0.25);
 	border-left:1px solid rgba(255,255,255,0.25);
 	border-right:1px solid rgba(255,255,255,0.25);	
-  	-webkit-border-radius: 0 0 4px 4px; /* Saf3-4, iOS 1-3.2, Android ≤1.6 */
-    -moz-border-radius: 0 0 4px 4px; /* FF1-3.6 */
-    border-radius: 0 0 4px 4px; /* Opera 10.5, IE9, Saf5, Chrome, FF4, iOS 4, Android 2.1+ */
+  	-webkit-border-radius: 0 0 2px 2px; 
+    -moz-border-radius: 0 0 2px 2px;
+    border-radius: 0 0 2px 2px; 
 }
 
 .menu {
@@ -110,9 +101,9 @@ nav {
 	border-top:1px solid rgba(255,255,255,0.25);
 	border-left:1px solid rgba(255,255,255,0.25);
 	border-right:1px solid rgba(255,255,255,0.25);	
-  	-webkit-border-radius: 4px 4px 0 0; /* Saf3-4, iOS 1-3.2, Android ≤1.6 */
-    -moz-border-radius: 4px 4px 0 0; /* FF1-3.6 */
-    border-radius: 4px 4px 0 0; /* Opera 10.5, IE9, Saf5, Chrome, FF4, iOS 4, Android 2.1+ */
+  	-webkit-border-radius: 3px 3px 0 0; /* Saf3-4, iOS 1-3.2, Android ≤1.6 */
+    -moz-border-radius: 3px 3px 0 0; /* FF1-3.6 */
+    border-radius: 3px 3px 0 0; /* Opera 10.5, IE9, Saf5, Chrome, FF4, iOS 4, Android 2.1+ */
 }
 
 .icon.settings {
@@ -136,14 +127,13 @@ aside {
 
 .filter-menu .filter-button.active {
 	opacity: 1;
-	padding: 3px 5px 4px;
 	width: 75px;
 	margin-right: -1px;
 }
 
 .filter-menu {
   	float: right;
-    width: 75px;
+    width: 82px;
 }
 
 .filter-menu .filter-button {
@@ -151,9 +141,9 @@ aside {
 	border-bottom:1px solid rgba(255,255,255,0.25);
 	border-left:1px solid rgba(255,255,255,0.25);
 	border-top:1px solid rgba(255,255,255,0.25);	
-  	-webkit-border-radius: 4px 0 0 4px; /* Saf3-4, iOS 1-3.2, Android ≤1.6 */
-    -moz-border-radius: 4px 0 0 4px; /* FF1-3.6 */
-    border-radius: 4px 0 0 4px; /* Opera 10.5, IE9, Saf5, Chrome, FF4, iOS 4, Android 2.1+ */
+  	-webkit-border-radius: 3px 0 0 3px; 
+    -moz-border-radius: 3px 0 0 3px; 
+    border-radius: 3px 0 0 3px; 
 	margin-bottom: 5px;
 	text-align:right;
 	padding:3px 5px 4px 5px;
@@ -161,15 +151,14 @@ aside {
 	float:right;
 	opacity:0.75;
 	cursor:pointer;
-	-webkit-transition: width 0.2s linear;
-	-moz-transition: width 0.2s linear;
-	-o-transition: width 0.2s linear;
-	transition: width 0.2s linear;
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
 }
 
-aside .filter-menu div:hover {
-    padding: 3px 5px 4px;
-    width: 75px;
+.filter-button:hover {
+    width: 75px; 
 }
 
 aside .filter-button {
@@ -223,7 +212,7 @@ aside .preview-container canvas{
 .slider {
 	background: none repeat scroll 0 0 rgba(22,22,22,0.75);
 	border: 1px solid rgba(255,255,255,0.2);
-	border-radius: 4px;
+	border-radius: 2px;
 	cursor: pointer;
 	overflow: hidden;
 	padding: 5px 20px 20px 10px;
@@ -234,12 +223,20 @@ aside .preview-container canvas{
 	position: absolute;
 }
 
-.slider .draggable {
+.close-button{
+	font-size:14px;
 	float: right;
-    margin-right: -10px;
-    opacity: 0.75;
+	font-weight:bold;
+	padding:2px 5px; 
+    margin-right: -20px;
+    margin-top:-10px;
+    background:rgba(255,255,255,0.1);
+    color:#bcbcbc;
 }
 
+.close-button:hover {
+	 background:rgba(255,255,255,0.2);
+}
 .slider  p {
 	padding:5px 0;
 }
@@ -269,9 +266,7 @@ aside .preview-container canvas{
 }
 
 .slider .ui-widget-header {
-    background:#343D3F;
-    border: 1px solid rgba(255,255,255,0.5);
-    border-radius: 4px;
+    background:rgba(229, 243, 247,0.1);
 }
 
 .slider input {
@@ -283,10 +278,10 @@ aside .preview-container canvas{
 }
 
 .rounded {
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 }
 
 .shadow-less {

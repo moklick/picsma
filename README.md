@@ -1,4 +1,4 @@
-picsma
+Picsma - HTML5 Image Manipulation Tool
 ======
 
-Picsma is a client-side image manipulation tool, made with HTML5, CSS3 and JS.
+Oh Boy! This is awesome! Image manipulation directly in your browser. 

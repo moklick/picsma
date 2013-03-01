@@ -1,4 +1,30 @@
 $(document).ready(function() {
+    initSliders();
+	handleSettingsButton();
+	handleCategorieButtons();
+	handleCloseButton();
+	resetSlider();
+});
+
+var handleSettingsButton = function(){
+	//toggle settings -contrast, saturation, exposure
+	$("#slider-container").hide();
+	$("#slider-container").draggable();
+	
+	$("#settings-button").click(function(){
+		$("#slider-container").fadeIn("600");
+		if($(this).hasClass('active')){
+			$(this).removeClass('active');
+			$("#slider-container").fadeOut("600");
+			
+		}else{
+			$(this).addClass('active');
+			resetSlider();
+		}
+	});
+};
+
+var initSliders = function(){
 		//set initial values and handle onslide event
 		$("#slider-container > div").each(function(){
 			var id = $(this).attr("id");
@@ -29,42 +55,23 @@ $(document).ready(function() {
 					//updateImage(contrast, brightness);
 			}});	
 		});
-	
-		//toggle settings -contrast, saturation, exposure
-		$("#slider-container").hide();
-	$("#slider-container").draggable();
-	
-	$("#settings-button").click(function(){
-		console.log($(this));
-		$("#slider-container").fadeIn("600");
-		if($(this).hasClass('active')){
-			$(this).removeClass('active');
-			$("#slider-container").fadeOut("600");
-			
-		}else{
-			$(this).addClass('active');
-		}
-	});
-		$("#settings").hover(
-			function(){$("#slider-container").addClass("slider-containerHover");},
-			function(){$("#slider-container").removeClass("slider-containerHover")
-		});
-		
-		$("#overlay").click(function(){
-			$("#overlay").hide();
-		});
+};
 
-		$("#filter-categories div").click(function() {
-		currentCategory = $(this).attr("id");		
-		$('.filter-button').click(function(){
-			$('.filter-button').removeClass('active');
-			$(this).addClass('active');
-		});	
-		resetSlider();
-	});
-});
+var handleCategorieButtons = function(){
+	$(".filter-button").click(function() {	
+		$('.filter-button').removeClass('active');
+		$(this).addClass('active');
+	});	
+};
 
-function resetSlider(){	
+var handleCloseButton = function(){
+	$('.close-button').click(function(e){
+		    $('#settings-button').removeClass('active');
+			$("#slider-container").fadeOut("250");
+	});
+};
+
+var resetSlider = function(){	
 	$('#contrast').slider( "option", "value", 1 );
 	$('#brightness').slider( "option", "value", 0);
 	$('#saturation').slider( "option", "value", 0);	
