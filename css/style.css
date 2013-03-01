@@ -46,13 +46,13 @@ nav {
     -moz-border-radius: 0 0 4px 4px; /* FF1-3.6 */
     border-radius: 0 0 4px 4px; /* Opera 10.5, IE9, Saf5, Chrome, FF4, iOS 4, Android 2.1+ */
 }
-ul.buttonList {
+.menu {
 	list-style: none;
 }
-ul.buttonList li {
+.menu li {
 	float:left;
 }
-ul.buttonList li a {
+.menu li a {
 	font-size:11px;
 	cursor: pointer;
 	text-decoration: none;
@@ -65,34 +65,35 @@ ul.buttonList li a {
 	background-color: #343d3f;
 	padding: 2px 10px 3px;
 }
-ul.buttonList li a:hover {
+.menu li a:hover {
 	background-color: #434d4f;
 }
-ul.buttonList li a.active{
+.menu li a.active {
 	background-color: #434d4f;
 }
 
-span.icon{
+span.icon {
 	background: url('../img/ressources/picsma_sprite.png') no-repeat 0 0;
 }
-nav ul.buttonList li span.navHelp{
+
+.icon.help {
 	background-position:-12px -82px;
 	padding-left:13px;
 	
 }
-nav ul.buttonList  li span.navAbout{
+.icon.about{
 	background-position:-10px -120px;
 	padding-left:22px;
 }
-nav ul.buttonList  li span.navContact{
+.icon.contact{
 	background-position:-11px -53px;
 	padding-left:15px;
 }
 
-ul.buttonList li .sepWhite{
+.menu li .separator-white{
 	border-right:1px solid rgba(255,255,255,0.2);
 }
-ul.buttonList li .sepBlack{
+.menu li .separator-black{
 	border-left:1px solid rgba(0,0,0,0.2);
 }
 header .logoWrapper{
