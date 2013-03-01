@@ -35,6 +35,7 @@ $(document).ready(function() {
 	$("#slider-container").draggable();
 	
 	$("#settings-button").click(function(){
+		console.log($(this));
 		$("#slider-container").fadeIn("600");
 		if($(this).hasClass('active')){
 			$(this).removeClass('active');
@@ -53,10 +54,21 @@ $(document).ready(function() {
 			$("#overlay").hide();
 		});
 
-		
+		$("#filter-categories div").click(function() {
+		currentCategory = $(this).attr("id");		
+		$('.filter-button').click(function(){
+			$('.filter-button').removeClass('active');
+			$(this).addClass('active');
+		});	
+		resetSlider();
+	});
 });
 
-
+function resetSlider(){	
+	$('#contrast').slider( "option", "value", 1 );
+	$('#brightness').slider( "option", "value", 0);
+	$('#saturation').slider( "option", "value", 0);	
+};
 
 function updateImage(contrast, brightness) {
 	
