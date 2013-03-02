@@ -134,9 +134,15 @@ aside {
 .filter-menu {
   	float: right;
     width: 82px;
+    text-align:right;
 }
 
-.filter-menu .filter-button {
+.filter-button span {
+	float:right;
+	display:block;
+}
+
+.filter-button {
 	background-color: #343d3f;
 	border-bottom:1px solid rgba(255,255,255,0.25);
 	border-left:1px solid rgba(255,255,255,0.25);
@@ -145,7 +151,6 @@ aside {
     -moz-border-radius: 3px 0 0 3px; 
     border-radius: 3px 0 0 3px; 
 	margin-bottom: 5px;
-	text-align:right;
 	padding:3px 5px 4px 5px;
 	width: 65px;
 	float:right;
@@ -161,11 +166,11 @@ aside {
     width: 75px; 
 }
 
-aside .filter-button {
+.filter-button {
 	cursor:pointer;
 }
 
-aside .preview-container {
+.preview-container {
     background: none repeat scroll 0 0 #343d3f;
     float: right;
     margin-right: 10px;
