@@ -1,81 +1,83 @@
 $(document).ready(function() {
-    initSliders();
-	handleSettingsButton();
-	handleCategorieButtons();
-	handleCloseButton();
-	resetSlider();
+    PicsmaUI.handleSliders();
+	PicsmaUI.handleButtons();
+	PicsmaUI.resetSlider();
 });
 
-var handleSettingsButton = function(){
-	//toggle settings -contrast, saturation, exposure
-	$("#slider-container").hide();
-	$("#slider-container").draggable();
-	
-	$("#settings-button").click(function(){
-		$("#slider-container").fadeIn("600");
-		if($(this).hasClass('active')){
-			$(this).removeClass('active');
-			$("#slider-container").fadeOut("600");
-			
-		}else{
-			$(this).addClass('active');
-			resetSlider();
-		}
-	});
-};
+var PicsmaUI = {
 
-var initSliders = function(){
-		//set initial values and handle onslide event
-		$("#slider-container > div").each(function(){
-			var id = $(this).attr("id");
-			var val = 0;
-			var min = 0;
-			var max = 0
-			var divisor = 1;
-			var step_width = 1;
-			
-			//initial values for contrast, brightness and exposure
-			switch (id){
-				case "contrast":min = 100; max = 1000; val = 100; divisor = 100; step_width = 5; break;
-				case "brightness": min = -128; max = 128; val = 0;break;
-				case "saturation": min = 0; max = 100; val = 0; divisor = 10; break;
-				default: val = 50;break;
+	handleButtons : function(){
+		//toggle settings -contrast, saturation, exposure
+		$("#slider-container").hide();
+		$("#slider-container").draggable();
+		
+		$("#settings-button").click(function(){
+			$("#slider-container").fadeIn("600");
+			if($(this).hasClass('active')){
+				$(this).removeClass('active');
+				$("#slider-container").fadeOut("600");
+				
+			}else{
+				$(this).addClass('active');
+				PicsmaUI.resetSlider();
 			}
-
-			$("#" + id).slider({
-				range: "min",
-				value: val,
-				min: min,
-				max: max,
-				step : step_width,
-				slide: function( event, ui ) {
-					var contrast = $('#contrast').slider("value")/100;
-					var brightness = $('#brightness').slider("value");
-					var saturation = $('#saturation').slider("value");
-					//updateImage(contrast, brightness);
-			}});	
 		});
-};
 
-var handleCategorieButtons = function(){
-	$(".filter-button").click(function() {	
-		$('.filter-button').removeClass('active');
-		$(this).addClass('active');
-	});	
-};
+		//handle category buttons
+		$(".filter-button").click(function() {	
+			$('.filter-button').removeClass('active');
+			$(this).addClass('active');
+		});	
 
-var handleCloseButton = function(){
-	$('.close-button').click(function(e){
-		    $('#settings-button').removeClass('active');
-			$("#slider-container").fadeOut("250");
-	});
-};
+		//handle close button
+		$('.close-button').click(function(e){
+			    $('#settings-button').removeClass('active');
+				$("#slider-container").fadeOut("250");
+		});
 
-var resetSlider = function(){	
-	$('#contrast').slider( "option", "value", 1 );
-	$('#brightness').slider( "option", "value", 0);
-	$('#saturation').slider( "option", "value", 0);	
-};
+	},
+
+	handleSliders : function(){
+			//set initial values and handle onslide event
+			$("#slider-container > div").each(function(){
+				var id = $(this).attr("id");
+				var val = 0;
+				var min = 0;
+				var max = 0
+				var divisor = 1;
+				var step_width = 1;
+				
+				//initial values for contrast, brightness and exposure
+				switch (id){
+					case "contrast":min = 100; max = 1000; val = 100; divisor = 100; step_width = 5; break;
+					case "brightness": min = -128; max = 128; val = 0;break;
+					case "saturation": min = 0; max = 100; val = 0; divisor = 10; break;
+					default: val = 50;break;
+				}
+
+				$("#" + id).slider({
+					range: "min",
+					value: val,
+					min: min,
+					max: max,
+					step : step_width,
+					slide: function( event, ui ) {
+						var contrast = $('#contrast').slider("value")/100;
+						var brightness = $('#brightness').slider("value");
+						var saturation = $('#saturation').slider("value");
+						//updateImage(contrast, brightness);
+				}});	
+			});
+	},
+
+	resetSlider : function(){	
+		$('#contrast').slider( "option", "value", 1 );
+		$('#brightness').slider( "option", "value", 0);
+		$('#saturation').slider( "option", "value", 0);	
+	}
+
+
+}
 
 function updateImage(contrast, brightness) {
 	
