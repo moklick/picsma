@@ -36,6 +36,10 @@ nav {
     border-radius: 0 0 2px 2px; 
 }
 
+.info-container {
+    display: none;
+}
+
 .menu {
 	list-style: none;
 }
