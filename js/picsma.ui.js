@@ -1,10 +1,24 @@
-(document).ready(function() {
+$(document).ready(function() {
+    PicsmaUI.handleTopMenu();
     PicsmaUI.handleSliders();
 	PicsmaUI.handleButtons();
 	PicsmaUI.resetSlider();
 });
 
 var PicsmaUI = {
+
+    handleTopMenu : function(){
+       $("nav ul li").click(function(){
+            $(".info-container").toggleClass("active");
+            $(".text-container").load("static-pages/" + $(this).children("a").attr("id") + ".html");
+            if (!$(".info-container").hasClass("active")) {
+                $(".info-container").css("top","0");
+            }
+        });
+        $(".text-container").click(function(){
+            $(".info-container").toggleClass("active");
+        });
+    },
 
 	handleButtons : function(){
 		//toggle settings -contrast, saturation, exposure
@@ -94,22 +108,22 @@ function updateImage(contrast, brightness) {
 		var g = pix[i + 1];
 		var b = pix[i + 2];
 		var alpha = pix[i + 3];
-		
+
 		var lum = 0.299 * r + 0.587 * g + 0.114 * b;
 		var cb = -0.168736 * r - 0.331264 * g + 0.5 * b;
 		var cr = 0.5 * r - 0.418688 * g - 0.081312 * b;
-		
+
 		lum = contrast*(lum - 127.5) + 127.5 + brightness;
-		
+
 		r = (lum + 1.402 * cr);
 		g = (lum - 0.3441 *cb - 0.7141* cr);
 		b = (lum + 1.772 * cb);
-		
+
 		pix[i] = r;
 		pix[i + 1] = g;
 		pix[i + 2] = b;
 		pix[i + 3] = alpha;
 	}
-	
+
 	ctx.putImageData(imgd, 0, 0);
 }
