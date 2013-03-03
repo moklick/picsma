@@ -18,10 +18,9 @@ html, body {
 	font-size:12px;
 }
 
-h1 {
-    font-size:30px;
+h2 {
+    font-size:1.5em;
     font-weight:normal;
-    padding:5px 5px 5px 10px;
 }
 
 #wrapper {
@@ -53,7 +52,6 @@ nav {
     border-radius:2px;
     -webkit-border-radius:2px;
     -moz-border-radius:2px;
-    cursor: pointer;
     z-index:5;
     transition:top 2s;
     -moz-transition:top 2s; 
@@ -68,19 +66,22 @@ nav {
 
 .text-container {
     position:absolute;
+    padding:1em;
 }
 
-.text-container p {
-    margin:20px;
-}
 
-.close {
+#close {
+	position:absolute;
+	right:0;
+	top:0;
     padding:5px;
     border: 1px solid rgba(255,255,255,0.2);
     float:right;
+    cursor:pointer;
     border-radius:2px;
     -moz-border-radius:2px;
     -webkit-border-radius:2px;
+    z-index:6;
 }
 
 .menu {

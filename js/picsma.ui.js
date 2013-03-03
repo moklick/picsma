@@ -9,14 +9,13 @@ var PicsmaUI = {
 
     handleTopMenu : function(){
        $("nav ul li").click(function(){
-            $(".info-container").toggleClass("active");
             $(".text-container").load("static-pages/" + $(this).children("a").attr("id") + ".html");
-            if (!$(".info-container").hasClass("active")) {
-                $(".info-container").css("top","0");
+           	if (!$(".info-container").hasClass("active")) {
+                $(".info-container").addClass("active");
             }
         });
-        $(".text-container").click(function(){
-            $(".info-container").toggleClass("active");
+        $("#close").click(function(){
+            $(".info-container").removeClass("active");
         });
     },
 
