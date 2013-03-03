@@ -9,14 +9,21 @@ var PicsmaUI = {
 
     handleTopMenu : function(){
        $("nav ul li").click(function(){
-            $(".info-container").toggleClass("active");
+           var requestedPage = $(this).children("a").attr("id") + ".html";
+           $(".text-container").fadeOut("slow", function () {
+                $(".text-container").load("static-pages/" + requestedPage, function(){
+                    $(".text-container").fadeIn();
+                });
+            });
+           	if (!$(".info-container").hasClass("active")) {
+                $(".text-container").fadeOut();
             $(".text-container").load("static-pages/" + $(this).children("a").attr("id") + ".html");
-            if (!$(".info-container").hasClass("active")) {
-                $(".info-container").css("top","0");
+           	if (!$(".info-container").hasClass("active")) {
+                $(".info-container").addClass("active");
             }
         });
-        $(".text-container").click(function(){
-            $(".info-container").toggleClass("active");
+        $("#close").click(function(){
+            $(".info-container").removeClass("active");
         });
     },
 
