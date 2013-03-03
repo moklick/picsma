@@ -16,9 +16,6 @@ var PicsmaUI = {
                 });
             });
            	if (!$(".info-container").hasClass("active")) {
-                $(".text-container").fadeOut();
-            $(".text-container").load("static-pages/" + $(this).children("a").attr("id") + ".html");
-           	if (!$(".info-container").hasClass("active")) {
                 $(".info-container").addClass("active");
             }
         });
