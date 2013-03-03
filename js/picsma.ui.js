@@ -9,7 +9,6 @@ var PicsmaUI = {
 
     handleTopMenu : function(){
        $("nav ul li").click(function(){
-<<<<<<< HEAD
            var requestedPage = $(this).children("a").attr("id") + ".html";
            $(".text-container").fadeOut("slow", function () {
                 $(".text-container").load("static-pages/" + requestedPage, function(){
@@ -18,8 +17,6 @@ var PicsmaUI = {
             });
            	if (!$(".info-container").hasClass("active")) {
                 $(".text-container").fadeOut();
-=======
->>>>>>> e4e45939075c81045ea85ae39cb65277e0f4ec86
             $(".text-container").load("static-pages/" + $(this).children("a").attr("id") + ".html");
            	if (!$(".info-container").hasClass("active")) {
                 $(".info-container").addClass("active");
