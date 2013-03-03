@@ -15,7 +15,7 @@ var PicsmaUI = {
                     $(".text-container").fadeIn();
                 });
             });
-           	if (!$(".info-container").hasClass("active")) {
+            if (!$(".info-container").hasClass("active")) {
                 $(".info-container").addClass("active");
             }
         });
