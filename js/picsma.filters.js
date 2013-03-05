@@ -1,19 +1,20 @@
 (function(){
- var c2dp =  CanvasRenderingContext2D.prototype;
- var BIGENDIAN = pTools.isBigEndian();
-
-    c2dp.grayscale = function () {
-        console.log(this);
-        var imgdata = this.getImageData(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+    window.picsma = {};
+    window.picsma.filter={
+    BIGENDIAN : pTools.isBigEndian(),
+    grayscale : function (canvas) {
+        var ctx = canvas.getContext('2d');
+        var imgdata = ctx.getImageData(0, 0, canvas.clientWidth, canvas.clientHeight);
         var data = imgdata.data;
         for (var i = data.length - 4; i >= 0; i = i - 4)
             data[i] = data[i + 1] = data[i + 2] = ~~(data[i] * .299 + data[i + 1] * .587 + data[i + 2] * .114)
-        this.putImageData(imgdata, 0, 0);
-    }
+        ctx.putImageData(imgdata, 0, 0);
+    },
 
-    c2dp.errorDiffusion= function () {
-        var w = this.canvas.clientWidth, h = this.canvas.clientHeight;
-        var imgdata = this.getImageData(0, 0, w, h);
+    errorDiffusion : function (canvas) {
+        var w = canvas.clientWidth, h = canvas.clientHeight;
+        var ctx = canvas.getContext('2d');
+        var imgdata = ctx.getImageData(0, 0, w, h);
         var data = imgdata.data;
         var newdata = new Int32Array(data);
         var x, y, c, e, n, p0, p1, p2, p3;
@@ -33,13 +34,14 @@
                 }
             }
         data.set(newdata);
-        this.putImageData(imgdata, 0, 0);
-    }
+        ctx.putImageData(imgdata, 0, 0);
+    },
 
-    c2dp.median= function (rad) {
-        var w = this.canvas.clientWidth, h = this.canvas.clientHeight;
-        var imgdata = this.getImageData(0, 0, w, h);
-        var oriimgdata = this.getImageData(0, 0, w, h);
+    median : function (canvas,rad) {
+        var w = canvas.clientWidth, h = canvas.clientHeight;
+        var ctx = canvas.getContext('2d');
+        var imgdata = ctx.getImageData(0, 0, w, h);
+        var oriimgdata = ctx.getImageData(0, 0, w, h);
         var data = new Int32Array(imgdata.data.buffer);
         var oridata = new Int32Array(oriimgdata.data.buffer);
         var vals = new Array((rad * 2 + 1) * (rad * 2 + 1));
@@ -56,13 +58,13 @@
                 end = p - 1;
                 do {
                     pivotIndex = end >> 1;
-                    pivotValue = BIGENDIAN ? (((vals[pivotIndex] >> 24) & 0xff) + ((vals[pivotIndex] >> 16) & 0xff) + ((vals[pivotIndex] >> 8) & 0xff)) : ((vals[pivotIndex] & 0xff) + ((vals[pivotIndex] >> 8) & 0xff) + ((vals[pivotIndex] >> 16) & 0xff));
+                    pivotValue = picsma.filters.BIGENDIAN ? (((vals[pivotIndex] >> 24) & 0xff) + ((vals[pivotIndex] >> 16) & 0xff) + ((vals[pivotIndex] >> 8) & 0xff)) : ((vals[pivotIndex] & 0xff) + ((vals[pivotIndex] >> 8) & 0xff) + ((vals[pivotIndex] >> 16) & 0xff));
                     tmp = vals[pivotIndex];
                     vals[pivotIndex] = vals[end];
                     vals[end] = tmp;
                     pivotIndex = start;
                     for (i = start; i < end; i = i + 1) {
-                        if ((BIGENDIAN ? (((vals[i] >> 24) & 0xff) + ((vals[i] >> 16) & 0xff) + ((vals[i] >> 8) & 0xff)) : ((vals[i] & 0xff) + ((vals[i] >> 8) & 0xff) + ((vals[i] >> 16) & 0xff))) < pivotValue) {
+                        if ((picsma.filters.BIGENDIAN ? (((vals[i] >> 24) & 0xff) + ((vals[i] >> 16) & 0xff) + ((vals[i] >> 8) & 0xff)) : ((vals[i] & 0xff) + ((vals[i] >> 8) & 0xff) + ((vals[i] >> 16) & 0xff))) < pivotValue) {
                             tmp = vals[i];
                             vals[i] = vals[pivotIndex];
                             vals[pivotIndex] = tmp;
@@ -81,8 +83,9 @@
                 data[y * w + x] = vals[pivotIndex];
             }
         }
-        this.putImageData(imgdata, 0, 0);
-    };
+        ctx.putImageData(imgdata, 0, 0);
+    }
+}
 
 
 /*      CanvasRenderingContext2D.picsma = {
