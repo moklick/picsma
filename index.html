@@ -22,6 +22,7 @@
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
+        <input id="uploader" type="file">
         <div id="wrapper">
             <header>
                 <div class="info-container">
@@ -29,11 +30,11 @@
                     <div id="close">Close</div>
                 <nav>
                     <ul class="menu">
-                        <li><a class="separator-white" id="help" href="#"><span class="icon help">Help</span>
+                        <li><a class="separator-white" id="help" href="#"><span class="icon-aid">Help</span>
                         </a></li>
-                        <li><a class="separator-white" id="contact"  href="#"><span class="icon contact">Contact</span>
+                        <li><a class="separator-white" id="contact" href="#"><span class="icon-envelop">Contact</span>
                         </a></li>
-                        <li><a href="#" id="about" ><span class="icon about">About</span> </a></li>
+                        <li><a href="#" id="about" ><span class="icon-star">About</span> </a></li>
                     </ul>
                 </nav>
                 </div>
@@ -41,10 +42,19 @@
                 <div class="clear"></div>
                 <ul class="menu options">
                     <li>
-                        <a href="#" id="settings-button" class="separator-white"><span class="icon settings">Settings</span></a>
+                        <a class="separator-white"  href="#" id="undo-button"><span class="icon-undo"></span></a>
                     </li>
                     <li>
-                        <a href="#" id="save-button"><span class="icon save">Save</span></a>
+                        <a class="separator-white" href="#" id="redo-button"><span class="icon-redo"></span></a>
+                    </li>
+                    <li>
+                        <a href="#" id="settings-button" class="separator-white"><span class="icon-settings"></span>Settings</a>
+                    </li>
+                    <li>
+                        <a href="#" id="save-button" class="separator-white"><span class="icon-cloud-download">Save</span></a>
+                    </li>
+                    <li>
+                        <a href="#" id="upload-button"><span class="icon-cloud-upload">Upload</span></a>
                     </li>
                 </ul>
                 

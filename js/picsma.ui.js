@@ -7,6 +7,15 @@ $(document).ready(function() {
 
 var PicsmaUI = {
 
+	handleUpload : function(){
+		$('#upload-button').click(function(e){
+			console.log('a');
+			e.stopPropagation();
+			e.preventDefault();
+			$('#uploader').click();
+		});
+	},
+
     handleTopMenu : function(){
        $("nav ul li").click(function(){
            var requestedPage = $(this).children("a").attr("id") + ".html";
