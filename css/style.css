@@ -168,25 +168,6 @@ nav {
 .menu li.active {
 	background-color: #434d4f;
 }
-
-.icon {
-	background: url('../img/ressources/picsma_sprite.png') no-repeat 0 0;
-}
-
-.icon.help {
-	background-position:-12px -82px;
-	padding-left:13px;
-	
-}
-.icon.about {
-	background-position:-10px -120px;
-	padding-left:22px;
-}
-.icon.contact {
-	background-position:-11px -53px;
-	padding-left:15px;
-}
-
 .menu .separator-white {
 	border-right:1px solid rgba(255,255,255,0.2);
 }
@@ -210,16 +191,6 @@ nav {
   	-webkit-border-radius: 3px 3px 0 0; 
     -moz-border-radius: 3px 3px 0 0; 
     border-radius: 3px 3px 0 0; 
-}
-
-.icon.settings {
-    background-position: -14px -299px;
-    padding-left: 17px;
-}
-
-.icon.save {
-	background-position:-14px -253px;
-	padding-left: 15px;
 }
 
 .main {
