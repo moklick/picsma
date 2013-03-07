@@ -39,8 +39,9 @@ var PicsmaUI = {
 	},
 
     handleTopMenu : function(){
-       $("nav ul li").click(function(){
-           var requestedPage = $(this).children("a").attr("id") + ".html";
+       $("nav ul span").click(function(){
+           var requestedPage = $(this).attr("id") + ".html";
+           console.log(requestedPage);
            $(".text-container").fadeOut("slow", function () {
                 $(".text-container").load("static-pages/" + requestedPage, function(){
                     $(".text-container").fadeIn();
