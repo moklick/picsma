@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    PicsmaUI.handleTopMenu();
+    PicsmaUI.handleNavigation();
     PicsmaUI.handleSliders();
 	PicsmaUI.handleButtons();
 	PicsmaUI.handleDownload();
@@ -38,11 +38,14 @@ var PicsmaUI = {
 		});
 	},
 
-    handleTopMenu : function(){
+    handleNavigation : function(){
        $("nav ul span").click(function(){
-           var requestedPage = $(this).attr("id") + ".html";
-           console.log(requestedPage);
-           $(".text-container").fadeOut("slow", function () {
+       		// set all buttons to inactive
+       		$("nav ul span").parents('li').removeClass('active');
+       		//set current button active
+       		$(this).parents('li').addClass('active');
+           	var requestedPage = $(this).attr("id") + ".html";
+           	$(".text-container").fadeOut("fast", function () {
                 $(".text-container").load("static-pages/" + requestedPage, function(){
                     $(".text-container").fadeIn();
                 });
@@ -51,8 +54,9 @@ var PicsmaUI = {
                 $(".info-container").addClass("active");
             }
         });
-        $("#close").click(function(){
+        $("#content-close").click(function(){
             $(".info-container").removeClass("active");
+            $("nav ul span").parents('li').removeClass('active');
         });
     },
 
@@ -80,7 +84,7 @@ var PicsmaUI = {
 		});
 
 		//handle close button
-		$('.close-button').click(function(e){
+		$('#settings-close').click(function(e){
 			    $('#settings-button').removeClass('active');
 				$("#slider-container").fadeOut("250");
 		});
