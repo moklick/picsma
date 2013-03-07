@@ -193,7 +193,7 @@ nav {
 }
 
 .logo {
-	background: url('../img/ressources/picsma_sprite.png') no-repeat 0 0;
+	background: url('../img/ressources/logo.png') no-repeat 0 0 transparent;
 	width: 106px;
 	height: 48px; 
 	margin:15px 0 5px 0;
