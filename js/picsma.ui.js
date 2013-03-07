@@ -12,14 +12,14 @@ var PicsmaUI = {
 	handleDownload : function(){
 		$('#save-button').click(function(e){
 			e.preventDefault();
-			var c = document.getElementById('canvas');
-			var saveData = c.toDataURL("image/png");
-			saveData = saveData.substr(saveData.indexOf(',') + 1).toString();
-			
-			var name = "picsma"; 
+			var c = $('#canvas')[0],
+			imageData = c.toDataURL("image/png"),
+			imageName = "picsma"; 
 
-			$('.imgData').val(saveData);
-			$('.imgName').val(name);
+			imageData = imageData.substr(imageData.indexOf(',') + 1).toString();
+
+			$('.imgData').val(imageData);
+			$('.imgName').val(imageName);
 			$('#save').submit();
 		})
 	},
@@ -29,6 +29,12 @@ var PicsmaUI = {
 			e.stopPropagation();
 			e.preventDefault();
 			$('#uploader').click();
+		});
+
+		$('#uploader').on('change', function() {
+			var files = $(this)[0].files;
+			uploadImage(files[0]);
+			return false;
 		});
 	},
 
