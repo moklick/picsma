@@ -73,12 +73,7 @@ html, body {
     background: url("../img/ressources/global_bg.jpg") repeat #222;
 	color: #999;
 	font-family: 'Open Sans', Arial;
-	font-size:12px;
-}
-
-h2 {
-    font-size:1.5em;
-    font-weight:normal;
+	font-size:1em;
 }
 
 #wrapper {
@@ -233,6 +228,7 @@ aside {
 	float:right;
 	opacity:0.75;
 	cursor:pointer;
+	font-size:0.75em;
 	-webkit-transition: all 0.2s linear;
 	-moz-transition: all 0.2s linear;
 	-o-transition: all 0.2s linear;
