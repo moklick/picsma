@@ -59,10 +59,6 @@
 	content: "\e006";
 }
 
-html,body,div, span, nav,ul,li, header, aside,a,canvas,img, p, h1, h2, input, select, textarea  {
-	padding: 0;
-	margin: 0;
-}
 
 a{
 	color:#999;
@@ -124,28 +120,6 @@ nav {
 .text-container {
     position:absolute;
     padding:1em;
-}
-
-
-#close {
-	position:absolute;
-	right:0;
-	top:0;
-    padding:5px;
-    border: 1px solid rgba(255,255,255,0.2);
-    border-top:none;
-    border-right:none;
-    float:right;
-    cursor:pointer;
-    border-radius: 0 0 0 2px;
-    -moz-border-radius:2px;
-    -webkit-border-radius:0 0 0 2px;
-    
-    font-size:0.9em;
-}
-
-#close:hover{
-	background-color: #434d4f;
 }
 
 .menu {

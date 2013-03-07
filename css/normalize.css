@@ -291,22 +291,10 @@ sub {
 dl,
 menu,
 ol,
-ul {
-    margin: 1em 0;
-}
-
+ul,
 dd {
-    margin: 0 0 0 40px;
-}
-
-/**
- * Address paddings set differently in IE 6/7.
- */
-
-menu,
-ol,
-ul {
-    padding: 0 0 0 40px;
+    margin: 0;
+    padding:0;
 }
 
 /**
