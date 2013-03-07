@@ -18,13 +18,13 @@
 	text-transform: none;
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
-	margin-right:0.5em;
 }
 .icon-cogs:before {
 	content: "\e000";
 }
 .icon-envelop:before {
 	content: "\e005";
+	margin-right:0.5em;
 }
 .icon-plus:before {
 	content: "\e007";
@@ -37,11 +37,9 @@
 }
 .icon-undo:before {
 	content: "\e001";
-	margin-right:0;
 }
 .icon-redo:before {
 	content: "\e002";
-	margin-right:0;
 }
 .icon-settings:before {
 	content: "\e009";
@@ -51,9 +49,11 @@
 }
 .icon-aid:before {
 	content: "\e008";
+	margin-right:0.5em;
 }
 .icon-star:before {
 	content: "\e00b";
+	margin-right:0.5em;
 }
 
 html,body,div, span, nav,ul,li, header, aside,a,canvas,img, p, h1, h2, input, select, textarea  {
@@ -186,6 +186,10 @@ nav {
   	-webkit-border-radius: 3px 3px 0 0; 
     -moz-border-radius: 3px 3px 0 0; 
     border-radius: 3px 3px 0 0; 
+}
+
+.options li span{
+	font-size:.85em;
 }
 
 .main {
