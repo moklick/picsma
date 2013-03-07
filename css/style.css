@@ -38,7 +38,6 @@
 .icon-undo:before {
 	content: "\e001";
 	margin-right:0;
-
 }
 .icon-redo:before {
 	content: "\e002";
@@ -309,6 +308,10 @@ aside .preview-container canvas{
 	position: absolute;
 	z-index: 6;
 	width:126px;
+}
+
+#save{
+	display:none;
 }
 
 #uploader{
