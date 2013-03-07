@@ -33,7 +33,7 @@ var PicsmaUI = {
 
 		$('#uploader').on('change', function() {
 			var files = $(this)[0].files;
-			uploadImage(files[0]);
+			uploadFile(files[0]);
 			return false;
 		});
 	},
