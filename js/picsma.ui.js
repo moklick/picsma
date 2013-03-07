@@ -2,10 +2,35 @@ $(document).ready(function() {
     PicsmaUI.handleTopMenu();
     PicsmaUI.handleSliders();
 	PicsmaUI.handleButtons();
+	PicsmaUI.handleDownload();
+	PicsmaUI.handleUpload();
 	PicsmaUI.resetSlider();
 });
 
 var PicsmaUI = {
+
+	handleDownload : function(){
+		$('#save-button').click(function(e){
+			e.preventDefault();
+			var c = document.getElementById('canvas');
+			var saveData = c.toDataURL("image/png");
+			saveData = saveData.substr(saveData.indexOf(',') + 1).toString();
+			
+			var name = "picsma"; 
+
+			$('.imgData').val(saveData);
+			$('.imgName').val(name);
+			$('#save').submit();
+		})
+	},
+
+	handleUpload : function(){
+		$('#upload-button').click(function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			$('#uploader').click();
+		});
+	},
 
     handleTopMenu : function(){
        $("nav ul li").click(function(){
