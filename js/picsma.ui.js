@@ -1,13 +1,18 @@
 $(document).ready(function() {
-    PicsmaUI.handleNavigation();
-    PicsmaUI.handleSliders();
-	PicsmaUI.handleButtons();
-	PicsmaUI.handleDownload();
-	PicsmaUI.handleUpload();
-	PicsmaUI.resetSlider();
+    PicsmaUI.init();
 });
 
 var PicsmaUI = {
+
+	init : function(){
+		this.handleNavigation();
+		this.handleSettings();
+		this.handleFilterButtons();
+		this.handleDownload();
+		this.handleUpload();
+		this.resetSlider();
+
+	},
 
 	handleDownload : function(){
 		$('#save-button').click(function(e){
@@ -60,38 +65,32 @@ var PicsmaUI = {
         });
     },
 
-	handleButtons : function(){
-		//toggle settings -contrast, saturation, exposure
-		$("#slider-container").hide();
-		$("#slider-container").draggable();
-
-		$("#settings-button").click(function(){
-			$("#slider-container").fadeIn("600");
-			if($(this).hasClass('active')){
-				$(this).removeClass('active');
-				$("#slider-container").fadeOut("600");
-
-			}else{
-				$(this).addClass('active');
-				PicsmaUI.resetSlider();
-			}
-		});
+	handleFilterButtons : function(){
 
 		//handle category buttons
 		$(".filter-button").click(function() {
 			$('.filter-button').removeClass('active');
 			$(this).addClass('active');
 		});
-
-		//handle close button
-		$('#settings-close').click(function(e){
-			    $('#settings-button').removeClass('active');
-				$("#slider-container").fadeOut("250");
-		});
-
 	},
 
-	handleSliders : function(){
+	handleSettings : function(){
+
+			//toggle settings -contrast, saturation, exposure
+			$("#settings-button").click(function(){
+				$("#slider-container").fadeIn("600");
+				if($(this).hasClass('active')){
+					$(this).removeClass('active');
+					$("#slider-container").fadeOut("600");
+
+				}else{
+					$(this).addClass('active');
+					PicsmaUI.resetSlider();
+				}
+			});
+
+			$("#slider-container").hide();
+			$("#slider-container").draggable();
 			//set initial values and handle onslide event
 			$("#slider-container > div").each(function(){
 				var id = $(this).attr("id");
@@ -121,6 +120,12 @@ var PicsmaUI = {
 						var saturation = $('#saturation').slider("value");
 						//updateImage(contrast, brightness);
 				}});
+			});
+
+			//handle close button
+			$('#settings-close').click(function(e){
+			    $('#settings-button').removeClass('active');
+				$("#slider-container").fadeOut("250");
 			});
 	},
 
