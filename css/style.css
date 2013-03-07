@@ -148,8 +148,9 @@ nav {
 
 .menu li {
 	float:left;
+	background-color: #343d3f;
 }
-.menu li a {
+.menu li span{
 	font-size:11px;
 	cursor: pointer;
 	text-decoration: none;
@@ -159,13 +160,12 @@ nav {
 	-moz-transition: background 0.2s linear;
 	-o-transition: background 0.2s linear;
 	transition: background 0.2s linear;
-	background-color: #343d3f;
 	padding: 2px 10px 3px;
 }
-.menu li a:hover {
+.menu li:hover {
 	background-color: #434d4f;
 }
-.menu li a.active {
+.menu li.active {
 	background-color: #434d4f;
 }
 
@@ -187,7 +187,7 @@ nav {
 	padding-left:15px;
 }
 
-.menu li .separator-white {
+.menu .separator-white {
 	border-right:1px solid rgba(255,255,255,0.2);
 }
 
