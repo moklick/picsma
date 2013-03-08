@@ -106,10 +106,10 @@ nav {
     -webkit-border-radius:2px;
     -moz-border-radius:2px;
     z-index:5;
-    transition:top .4s bounce;
-    -moz-transition:top .4s bounce; 
-    -webkit-transition:top .4s bounce; 
-    -o-transition:top .4s bounce;
+    transition:top .4s ease-out;
+    -moz-transition:top .4s ease-out; 
+    -webkit-transition:top .4s ease-out; 
+    -o-transition:top .4s ease-out;
 }
 
 .info-container.active {
