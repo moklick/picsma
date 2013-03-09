@@ -1,5 +1,6 @@
 (function(){
-    window.picsma = {};
+if (typeof picsma == undefined)
+window.picsma= {};
     window.picsma.filter={
     BIGENDIAN : pTools.isBigEndian(),
     currentCanvas : null,
