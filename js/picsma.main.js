@@ -1,25 +1,33 @@
 var filters = [
-    [
+    {
+        name: 'Black and White',
+        variations:[ 
         {   name: 'Simple Grayscale',
-            func: function (c) {
-                picsma.filter.grayscale(c);
+            func: function () {
+                picsma.filter.grayscale();
             }
         },
         {
             name: 'Black and White Bitmap',
-            func: function (c) {
-                picsma.filter.grayscale(c);
-                picsma.filter.errorDiffusion(c);
+            func: function () {
+                picsma.filter.grayscale();
+                picsma.filter.errorDiffusion();
             }
-        }
-    ],
-    [],
-    [],
-    []
+        },
+        {
+            name: 'Pointilist Black and White',
+            func: function(){
+                picsma.filter.errorDiffusion();
+                picsma.filter.grayscale();
+                picsma.filter.median(1);
+            }
+        }]
+    },
+    {}
 ];
 
 var maxW = 800, maxH = 600;
-var currentFilters = filters[0];
+var currentFilters = filters[0].variations;
 
 
 function loadPicture(source) {
@@ -56,7 +64,9 @@ function updateFilterPreviews() {
         var newPreview = $('<canvas width="75" height="75" class="preview-image"></canvas>');
         newPreview.appendTo('#preview');
         newPreview[0].getContext('2d').drawImage($('#canvas')[0], -200, -200);
-        currentFilters[i].func(newPreview[0]);
+        picsma.filter.setCanvas(newPreview[0]);
+        currentFilters[i].func();
+        picsma.filter.setCanvas($('#canvas')[0]);
         (function(){var currFunc = currentFilters[i].func;
         newPreview.on("click",function(){
             currFunc($('#canvas')[0]);

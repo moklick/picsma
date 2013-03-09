@@ -2,18 +2,25 @@
     window.picsma = {};
     window.picsma.filter={
     BIGENDIAN : pTools.isBigEndian(),
-    grayscale : function (canvas) {
-        var ctx = canvas.getContext('2d');
-        var imgdata = ctx.getImageData(0, 0, canvas.clientWidth, canvas.clientHeight);
+    currentCanvas : null,
+    setCanvas : function (canvas){
+      if (canvas.getContext)
+        picsma.filter.currentCanvas = canvas;
+    },
+    grayscale : function () {
+      if (!picsma.filter.currentCanvas) return;
+        var ctx = picsma.filter.currentCanvas.getContext('2d');
+        var imgdata = ctx.getImageData(0, 0, picsma.filter.currentCanvas.clientWidth, picsma.filter.currentCanvas.clientHeight);
         var data = imgdata.data;
         for (var i = data.length - 4; i >= 0; i = i - 4)
             data[i] = data[i + 1] = data[i + 2] = ~~(data[i] * .299 + data[i + 1] * .587 + data[i + 2] * .114)
         ctx.putImageData(imgdata, 0, 0);
     },
 
-    errorDiffusion : function (canvas) {
-        var w = canvas.clientWidth, h = canvas.clientHeight;
-        var ctx = canvas.getContext('2d');
+    errorDiffusion : function () {      
+      if (!picsma.filter.currentCanvas) return;
+        var w = picsma.filter.currentCanvas.clientWidth, h = picsma.filter.currentCanvas.clientHeight;
+        var ctx = picsma.filter.currentCanvas.getContext('2d');
         var imgdata = ctx.getImageData(0, 0, w, h);
         var data = imgdata.data;
         var newdata = new Int32Array(data);
@@ -37,9 +44,10 @@
         ctx.putImageData(imgdata, 0, 0);
     },
 
-    median : function (canvas,rad) {
-        var w = canvas.clientWidth, h = canvas.clientHeight;
-        var ctx = canvas.getContext('2d');
+    median : function (rad) {      
+      if (!picsma.filter.currentCanvas) return;
+        var w = picsma.filter.currentCanvas.clientWidth, h = picsma.filter.currentCanvas.clientHeight;
+        var ctx = picsma.filter.currentCanvas.getContext('2d');
         var imgdata = ctx.getImageData(0, 0, w, h);
         var oriimgdata = ctx.getImageData(0, 0, w, h);
         var data = new Int32Array(imgdata.data.buffer);
@@ -58,13 +66,13 @@
                 end = p - 1;
                 do {
                     pivotIndex = end >> 1;
-                    pivotValue = picsma.filters.BIGENDIAN ? (((vals[pivotIndex] >> 24) & 0xff) + ((vals[pivotIndex] >> 16) & 0xff) + ((vals[pivotIndex] >> 8) & 0xff)) : ((vals[pivotIndex] & 0xff) + ((vals[pivotIndex] >> 8) & 0xff) + ((vals[pivotIndex] >> 16) & 0xff));
+                    pivotValue = picsma.filter.BIGENDIAN ? (((vals[pivotIndex] >> 24) & 0xff) + ((vals[pivotIndex] >> 16) & 0xff) + ((vals[pivotIndex] >> 8) & 0xff)) : ((vals[pivotIndex] & 0xff) + ((vals[pivotIndex] >> 8) & 0xff) + ((vals[pivotIndex] >> 16) & 0xff));
                     tmp = vals[pivotIndex];
                     vals[pivotIndex] = vals[end];
                     vals[end] = tmp;
                     pivotIndex = start;
                     for (i = start; i < end; i = i + 1) {
-                        if ((picsma.filters.BIGENDIAN ? (((vals[i] >> 24) & 0xff) + ((vals[i] >> 16) & 0xff) + ((vals[i] >> 8) & 0xff)) : ((vals[i] & 0xff) + ((vals[i] >> 8) & 0xff) + ((vals[i] >> 16) & 0xff))) < pivotValue) {
+                        if ((picsma.filter.BIGENDIAN ? (((vals[i] >> 24) & 0xff) + ((vals[i] >> 16) & 0xff) + ((vals[i] >> 8) & 0xff)) : ((vals[i] & 0xff) + ((vals[i] >> 8) & 0xff) + ((vals[i] >> 16) & 0xff))) < pivotValue) {
                             tmp = vals[i];
                             vals[i] = vals[pivotIndex];
                             vals[pivotIndex] = tmp;
@@ -92,7 +100,7 @@
 
       grayscale: function () {
           console.log(this);
-          var imgdata = this.getImageData(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+          var imgdata = this.getImageData(0, 0, this.picsma.filter.currentCanvas.clientWidth, this.currentCanvas.clientHeight);
           var data = imgdata.data;
           for (var i = data.length - 4; i >= 0; i = i - 4)
               data[i] = data[i + 1] = data[i + 2] = ~~(data[i] * .299 + data[i + 1] * .587 + data[i + 2] * .114)
