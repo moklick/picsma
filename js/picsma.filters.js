@@ -4,13 +4,12 @@ window.picsma.filter = {
     currentCanvas: null,
 
 
-    setCanvas: function (canvas) {
-        if (canvas.getContext)
-            picsma.filter.currentCanvas = canvas;
+    setCanvas: function(canvas) {
+        if (canvas.getContext) picsma.filter.currentCanvas = canvas;
     },
 
 
-    grayscale: function () {
+    grayscale: function() {
         if (!this.currentCanvas) return;
 
         var ctx = this.currentCanvas.getContext('2d'),
@@ -18,13 +17,13 @@ window.picsma.filter = {
             data = imgdata.data;
 
         for (var i = data.length - 4; i >= 0; i = i - 4)
-            data[i] = data[i + 1] = data[i + 2] = ~~(data[i] * .299 + data[i + 1] * .587 + data[i + 2] * .114)
+        data[i] = data[i + 1] = data[i + 2] = ~~ (data[i] * .299 + data[i + 1] * .587 + data[i + 2] * .114)
 
         ctx.putImageData(imgdata, 0, 0);
     },
 
 
-    errorDiffusion: function () {
+    errorDiffusion: function() {
         if (!this.currentCanvas) return;
 
         var w = this.currentCanvas.clientWidth,
@@ -36,27 +35,27 @@ window.picsma.filter = {
             x, y, c, e, n, p0, p1, p2, p3;
 
         for (x = 0; x < w; x++)
-            for (y = 0; y < h; y++) {
-                p0 = (y * w + x) * 4;
-                p1 = x === w - 1 ? null : (y * w + x + 1) * 4;
-                p2 = y === h - 1 ? null : (y * w + x + w) * 4;
-                p3 = x === w - 1 || y === h - 1 ? null : (y * w + x + 1 + w) * 4;
-                for (c = 0; c < 4; c = c + 1) {
-                    n = newdata[p0 + c] < 128 ? 0 : 255;
-                    e = newdata[p0 + c] - n;
-                    newdata[p0 + c] = n;
-                    p1 && (newdata[p1 + c] += e >> 1);
-                    p2 && (newdata[p2 + c] += e >> 2);
-                    p3 && (newdata[p3 + c] += e >> 2);
-                }
+        for (y = 0; y < h; y++) {
+            p0 = (y * w + x) * 4;
+            p1 = x === w - 1 ? null : (y * w + x + 1) * 4;
+            p2 = y === h - 1 ? null : (y * w + x + w) * 4;
+            p3 = x === w - 1 || y === h - 1 ? null : (y * w + x + 1 + w) * 4;
+            for (c = 0; c < 4; c = c + 1) {
+                n = newdata[p0 + c] < 128 ? 0 : 255;
+                e = newdata[p0 + c] - n;
+                newdata[p0 + c] = n;
+                p1 && (newdata[p1 + c] += e >> 1);
+                p2 && (newdata[p2 + c] += e >> 2);
+                p3 && (newdata[p3 + c] += e >> 2);
             }
+        }
 
         data.set(newdata);
         ctx.putImageData(imgdata, 0, 0);
     },
 
 
-    median: function (rad) {
+    median: function(rad) {
         if (!this.currentCanvas) return;
 
         var w = this.currentCanvas.clientWidth,
@@ -110,7 +109,7 @@ window.picsma.filter = {
     },
 
 
-    raster: function (size) {
+    raster: function(size) {
         if (!this.currentCanvas) return;
 
         var w = this.currentCanvas.clientWidth,
@@ -118,7 +117,8 @@ window.picsma.filter = {
             ctx = this.currentCanvas.getContext('2d'),
             imgdata = ctx.getImageData(0, 0, w, h),
             data = imgdata.data;
-        var blocksX = Math.ceil(w / size), blocksY = Math.ceil(h / size);
+        var blocksX = Math.ceil(w / size),
+            blocksY = Math.ceil(h / size);
         var r, g, b, c, p, x1, y1;
 
         for (var x = 0; x < w; x += size) {
@@ -126,28 +126,28 @@ window.picsma.filter = {
 
                 r = g = b = c = 0;
                 x1 = (x + size) >= w ? w - 1 : x + size;
-                y1 =  (y + size) >= h ? h - 1 : y + size;
+                y1 = (y + size) >= h ? h - 1 : y + size;
 
-                for (var xx = x1; xx >= x; xx=xx-1) {
-                    for (var yy = y1; yy >= y; yy=yy-1) {
-                        p= (yy*w+xx)*4;
-                        c=c+1;
-                        r=r+data[p];
-                        g=g+data[p+1];
-                        b=b+data[p+2];
+                for (var xx = x1; xx >= x; xx = xx - 1) {
+                    for (var yy = y1; yy >= y; yy = yy - 1) {
+                        p = (yy * w + xx) * 4;
+                        c = c + 1;
+                        r = r + data[p];
+                        g = g + data[p + 1];
+                        b = b + data[p + 2];
                     }
                 }
 
-                r=r/c;
-                g=g/c;
-                b=b/c;
+                r = r / c;
+                g = g / c;
+                b = b / c;
 
-                for (var xx = x1; xx >= x; xx=xx-1) {
-                    for (var yy = y1; yy >= y; yy=yy-1) {
-                        p= (yy*w+xx)*4;
-                        data[p]=r;
-                        data[p+1]=g;
-                        data[p+2]=b;
+                for (var xx = x1; xx >= x; xx = xx - 1) {
+                    for (var yy = y1; yy >= y; yy = yy - 1) {
+                        p = (yy * w + xx) * 4;
+                        data[p] = r;
+                        data[p + 1] = g;
+                        data[p + 2] = b;
                     }
                 }
 
