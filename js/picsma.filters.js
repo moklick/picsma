@@ -121,8 +121,8 @@ window.picsma.filter = {
         var blocksX = Math.ceil(w / size), blocksY = Math.ceil(h / size);
         var r, g, b, c, p, x1, y1;
 
-        for (var x = 0; x < blocksX; x += size) {
-            for (var y = 0; y < blocksY; y += size) {
+        for (var x = 0; x < w; x += size) {
+            for (var y = 0; y < h; y += size) {
 
                 r = g = b = c = 0;
                 x1 = (x + size) >= w ? w - 1 : x + size;

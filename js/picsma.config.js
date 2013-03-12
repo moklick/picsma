@@ -25,7 +25,17 @@ window.picsma={
 			picsma.filter.grayscale();
 			picsma.filter.median(1);
 		}
-	}]
+	},
+            {
+                name:'Black and White Raster',
+                func: function(){
+                    picsma.filter.grayscale();
+                    picsma.filter.raster(4);
+
+                }
+
+
+            }]
 },
 {}
 ],
