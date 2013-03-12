@@ -11,7 +11,6 @@ var PicsmaUI = {
 		this.handleDownload();
 		this.handleUpload();
 		this.resetSlider();
-
 	},
 
 	handleDownload : function(){
@@ -75,7 +74,11 @@ var PicsmaUI = {
 	},
 
 	handleSettings : function(){
-
+			var setSliderValues = function(c,b,s){
+				$("#contrast-value").val(c);
+				$("#brightness-value").val(b);
+				$("#saturation-value").val(s);
+			}
 			//toggle settings -contrast, saturation, exposure
 			$("#settings-button").click(function(){
 				$("#slider-container").fadeIn("600");
@@ -114,13 +117,17 @@ var PicsmaUI = {
 					min: min,
 					max: max,
 					step : step_width,
-					slide: function( event, ui ) {
-						var contrast = $('#contrast').slider("value")/100;
-						var brightness = $('#brightness').slider("value");
-						var saturation = $('#saturation').slider("value");
+					change: function( event, ui ) {
+						var c = $('#contrast').slider("value")/100;
+						var b = $('#brightness').slider("value");
+						var s = $('#saturation').slider("value");
+						setSliderValues(c,b,s);
+						
 						//updateImage(contrast, brightness);
 				}});
 			});
+
+			setSliderValues(0,0,0);
 
 			//handle close button
 			$('#settings-close').click(function(e){
