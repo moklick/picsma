@@ -119,21 +119,41 @@ window.picsma.filter = {
             imgdata = ctx.getImageData(0, 0, w, h),
             data = imgdata.data;
         var blocksX = Math.ceil(w / size), blocksY = Math.ceil(h / size);
-        var r = 0, g = 0, b = 0, c = 0;
+        var r, g, b, c, p, x1, y1;
 
         for (var x = 0; x < blocksX; x += size) {
             for (var y = 0; y < blocksY; y += size) {
-                r = g = b = 0;
-                for (var xx = (x + size) >= w ? w - 1 : x + size; xx >= x; xx--) {
-                    for (var yy = (y + size) >= h ? h - 1 : y + size; yy >= y; yy--) {
-                        c++;
 
+                r = g = b = c = 0;
+                x1 = (x + size) >= w ? w - 1 : x + size;
+                y1 =  (y + size) >= h ? h - 1 : y + size;
+
+                for (var xx = x1; xx >= x; xx=xx-1) {
+                    for (var yy = y1; yy >= y; yy=yy-1) {
+                        p= (yy*w+xx)*4;
+                        c=c+1;
+                        r=r+data[p];
+                        g=g+data[p+1];
+                        b=b+data[p+2];
                     }
                 }
+
+                r=r/c;
+                g=g/c;
+                b=b/c;
+
+                for (var xx = x1; xx >= x; xx=xx-1) {
+                    for (var yy = y1; yy >= y; yy=yy-1) {
+                        p= (yy*w+xx)*4;
+                        data[p]=r;
+                        data[p+1]=g;
+                        data[p+2]=b;
+                    }
+                }
+
             }
         }
 
         ctx.putImageData(imgdata, 0, 0);
     }
-
 }
