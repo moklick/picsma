@@ -248,7 +248,6 @@ aside .preview-container canvas{
  	background: none repeat scroll 0 0 #A5A5A9;
     margin-bottom: 10px;
     padding: 4px;
-    cursor:pointer;
     width:75px;
     height:75px;
 }
@@ -272,10 +271,6 @@ aside .preview-container canvas{
 
 #uploader{
 	display:none;
-}
-
-#canvas{
-	cursor:pointer;
 }
 
 .main-img{
