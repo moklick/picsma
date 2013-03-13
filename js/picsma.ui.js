@@ -139,7 +139,10 @@ var PicsmaUI = {
 					var b = $('#brightness').slider("value");
 					var s = $('#saturation').slider("value");
 					setSliderValues(c, b, s);
-					updateBCS(b,c,s);
+					if(typeof event.cancelable != undefined && event.cancelable){
+						updateBCS(b,c,s);
+					}
+					
 				}
 			});
 		});
