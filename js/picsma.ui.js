@@ -139,7 +139,7 @@ var PicsmaUI = {
 					var b = $('#brightness').slider("value");
 					var s = $('#saturation').slider("value");
 					setSliderValues(c, b, s);
-					if(typeof event.cancelable != undefined){
+					if(typeof event.cancelable != undefined && event.cancelable){
 						updateBCS(b,c,s);
 					}
 					
