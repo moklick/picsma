@@ -133,7 +133,7 @@ var PicsmaUI = {
 				min: min,
 				max: max,
 				step: step_width,
-				change: function(event, ui) {
+				slide: function(event, ui) {
 					var c = $('#contrast').slider("value");
 					var b = $('#brightness').slider("value");
 					var s = $('#saturation').slider("value");
