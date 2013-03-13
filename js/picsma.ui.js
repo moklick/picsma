@@ -118,9 +118,9 @@ var PicsmaUI = {
 					break;
 				case "saturation":
 					min = 0;
-					max = 100;
-					val = 0;
-					divisor = 10;
+					max = 2;
+					val = 1;
+					step_width = .01;
 					break;
 				default:
 					val = 50;
