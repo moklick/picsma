@@ -106,11 +106,10 @@ var PicsmaUI = {
 			//initial values for contrast, brightness and exposure
 			switch (id) {
 				case "contrast":
-					min = 100;
-					max = 1000;
-					val = 100;
-					divisor = 100;
-					step_width = 5;
+					min = 0;
+					max = 2;
+					val = 1;
+					step_width = .01;
 					break;
 				case "brightness":
 					min = -128;
@@ -135,7 +134,7 @@ var PicsmaUI = {
 				max: max,
 				step: step_width,
 				change: function(event, ui) {
-					var c = $('#contrast').slider("value") / 100;
+					var c = $('#contrast').slider("value");
 					var b = $('#brightness').slider("value");
 					var s = $('#saturation').slider("value");
 					setSliderValues(c, b, s);
