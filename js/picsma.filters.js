@@ -117,8 +117,8 @@ window.picsma.filter = {
             h = this.currentCanvas.height,
             ctx = this.currentCanvas.getContext('2d'),
             imgdata = ctx.getImageData(0, 0, w, h),
-            data = imgdata.data;
-        var r, g, b, c, p, x1, y1;
+            data = imgdata.data,
+            r, g, b, c, p, x1, y1;
 
         for (var x = 0; x < w; x += size) {
             for (var y = 0; y < h; y += size) {
@@ -126,6 +126,7 @@ window.picsma.filter = {
                 r = g = b = c = 0;
                 x1 = ((x + size-1) >= w ? (w - 1) : (x + size-1));
                 y1 =  ((y + size-1) >= h ? (h - 1) : (y + size-1));
+
                 for (var xx = x1; xx >= x; xx=xx-1) {
                     for (var yy = y1; yy >= y; yy=yy-1) {
                         p= (yy*w+xx)*4;

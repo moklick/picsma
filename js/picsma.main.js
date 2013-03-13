@@ -25,6 +25,7 @@ function loadPicture(source) {
         can.height = newH;
         ctx.drawImage(tmpimg, 0, 0, newW, newH);
         updateFilterPreviews();
+        createLabCopy($('#canvas')[0]);
     }
 }
 
@@ -69,6 +70,32 @@ function uploadFile(file) {
     reader.readAsDataURL(file);
 }
 
+function updateBCS(b, c, s) {
+    console.log('updateBCS: '+b+', '+ c + ', '+s);
+    var canvas = $('#canvas')[0];
+    if (typeof canvas.labCopy == "undefined") createLabCopy(canvas);
+    var ctx = canvas.getContext('2d'),
+        img = ctx.getImageData(0, 0, canvas.width, canvas.height),
+        data = img.data,
+        p = 0, res = 0;
+    console.log(ctx);
+
+    for (var i = canvas.labCopy.length - 1; i >= 0; i--) {
+        res = pTools.ycc2rgb((canvas.labCopy[i][0]-128)*c+128+b, canvas.labCopy[i][1], canvas.labCopy[i][2]);
+        p = i * 4;
+        data[p] = res[0];
+        data[p + 1] = res[1];
+        data[p + 2] = res[2];
+    }
+    ctx.putImageData(img, 0, 0);
+}
+
+function createLabCopy(canvas) {
+    canvas.labCopy = [];
+    var data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data
+    for (var i = 0; i <data.length; i += 4) canvas.labCopy.push(pTools.rgb2ycc(data[i], data[i + 1], data[i + 2]));
+}
+
 $(function () {
     var dropArea = document;
     dropArea.addEventListener('dragenter', stopDefault, false);
@@ -76,4 +103,5 @@ $(function () {
     dropArea.addEventListener('dragleave', stopDefault, false);
     dropArea.addEventListener('drop', dropHandler, false);
     loadPicture('img/ressources/example.jpg');
+    console.log($('#canvas')[0]);
 })
