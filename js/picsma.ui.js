@@ -139,8 +139,7 @@ var PicsmaUI = {
 					var b = $('#brightness').slider("value");
 					var s = $('#saturation').slider("value");
 					setSliderValues(c, b, s);
-
-					//updateImage(contrast, brightness);
+					updateBCS(b,c,s);
 				}
 			});
 		});
