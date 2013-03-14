@@ -81,7 +81,7 @@ function updateBCS(b, c, s) {
     console.log(ctx);
 
     for (var i = canvas.labCopy.length - 1; i >= 0; i--) {
-        res = pTools.ycc2rgb((canvas.labCopy[i][0]-128)*c+128+b, canvas.labCopy[i][1], canvas.labCopy[i][2]);
+        res = pTools.ycc2rgb((canvas.labCopy[i][0]-128)*c+128+b, canvas.labCopy[i][1]*s, canvas.labCopy[i][2]*s);
         p = i * 4;
         data[p] = res[0];
         data[p + 1] = res[1];
