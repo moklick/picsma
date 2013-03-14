@@ -10,7 +10,6 @@ var PicsmaUI = {
 		this.handleFilterButtons();
 		this.handleDownload();
 		this.handleUpload();
-		this.resetSlider();
 	},
 
 	handleDownload: function() {
@@ -73,12 +72,35 @@ var PicsmaUI = {
 		});
 	},
 
+	getSliderValues : function(){
+
+		var values = [
+			$('#contrast').slider("value"),
+			$('#brightness').slider("value"),
+			$('#saturation').slider("value")];
+
+		return values;
+	},
+
 	handleSettings: function() {
-		var setSliderValues = function(c, b, s) {
-			$("#contrast-value").val(c);
-			$("#brightness-value").val(b);
-			$("#saturation-value").val(s);
-		}
+
+		var setSliderValues = function(){
+			var values = PicsmaUI.getSliderValues();
+
+			$("#contrast-value").val(values[0]);
+			$("#brightness-value").val(values[1]);
+			$("#saturation-value").val(values[2]);
+		};
+
+		var handleSliderMovement = function(evt) {
+			if(typeof evt.cancelable != "undefined"){
+				var values = PicsmaUI.getSliderValues();
+
+				setSliderValues();
+				updateBCS(values[1],values[0],values[2]);
+			}
+		};
+
 		//toggle settings -contrast, saturation, exposure
 		$("#settings-button").click(function() {
 			$("#slider-container").fadeIn("600");
@@ -94,13 +116,13 @@ var PicsmaUI = {
 
 		$("#slider-container").hide();
 		$("#slider-container").draggable();
+
 		//set initial values and handle onslide event
 		$("#slider-container > div").each(function() {
 			var id = $(this).attr("id");
 			var val = 0;
 			var min = 0;
 			var max = 0
-			var divisor = 1;
 			var step_width = 1;
 
 			//initial values for contrast, brightness and exposure
@@ -109,7 +131,7 @@ var PicsmaUI = {
 					min = 0;
 					max = 2;
 					val = 1;
-					step_width = .01;
+					step_width = 0.02;
 					break;
 				case "brightness":
 					min = -128;
@@ -120,10 +142,7 @@ var PicsmaUI = {
 					min = 0;
 					max = 2;
 					val = 1;
-					step_width = .01;
-					break;
-				default:
-					val = 50;
+					step_width = 0.02; 
 					break;
 			}
 
@@ -133,32 +152,28 @@ var PicsmaUI = {
 				min: min,
 				max: max,
 				step: step_width,
-				slide: function(event, ui) {
-					var c = $('#contrast').slider("value");
-					var b = $('#brightness').slider("value");
-					var s = $('#saturation').slider("value");
-					setSliderValues(c, b, s);
-					//if(typeof event.cancelable != undefined && event.cancelable){
-						updateBCS(b,c,s);
-					//}
-					
+				slide: function(evt, ui) {
+					handleSliderMovement(evt);
+				},
+				change: function(evt, ui) {
+					handleSliderMovement(evt);
 				}
 			});
 		});
-
-		setSliderValues(0, 0, 0);
 
 		//handle close button
 		$('#settings-close').click(function(e) {
 			$('#settings-button').removeClass('active');
 			$("#slider-container").fadeOut("250");
 		});
+
+		setSliderValues();
 	},
 
 	resetSlider: function() {
 		$('#contrast').slider("option", "value", 1);
 		$('#brightness').slider("option", "value", 0);
-		$('#saturation').slider("option", "value", 0);
+		$('#saturation').slider("option", "value", 1);
 	}
 
 
