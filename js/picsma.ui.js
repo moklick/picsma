@@ -6,7 +6,7 @@ var PicsmaUI = {
 
 	init: function() {
 		this.handleNavigation();
-		this.handleSettings();
+	//	this.handleSettings();
 		this.handleFilterButtons();
 		this.handleDownload();
 		this.handleUpload();
@@ -115,10 +115,10 @@ var PicsmaUI = {
 		});
 
 		$("#slider-container").hide();
-		$("#slider-container").draggable();
+	//	$("#slider-container").draggable();
 
 		//set initial values and handle onslide event
-		$("#slider-container > div").each(function() {
+	/*	$("#slider-container > div").each(function() {
 			var id = $(this).attr("id");
 			var val = 0;
 			var min = 0;
@@ -159,7 +159,7 @@ var PicsmaUI = {
 					handleSliderMovement(evt);
 				}
 			});
-		});
+		});*/
 
 		//handle close button
 		$('#settings-close').click(function(e) {
@@ -178,38 +178,3 @@ var PicsmaUI = {
 
 
 }
-
-	function updateImage(contrast, brightness) {
-
-		//ctx.drawImage(image, 0, 0);
-		imgd = originalImageData;
-
-		//imgd = ctx.getImageData(0,0,image.width, image.height);
-
-		pix = imgd.data
-
-		for (var i = 0, n = pix.length; i < n; i += 4) {
-			//read pixel values
-			var r = pix[i];
-			var g = pix[i + 1];
-			var b = pix[i + 2];
-			var alpha = pix[i + 3];
-
-			var lum = 0.299 * r + 0.587 * g + 0.114 * b;
-			var cb = -0.168736 * r - 0.331264 * g + 0.5 * b;
-			var cr = 0.5 * r - 0.418688 * g - 0.081312 * b;
-
-			lum = contrast * (lum - 127.5) + 127.5 + brightness;
-
-			r = (lum + 1.402 * cr);
-			g = (lum - 0.3441 * cb - 0.7141 * cr);
-			b = (lum + 1.772 * cb);
-
-			pix[i] = r;
-			pix[i + 1] = g;
-			pix[i + 2] = b;
-			pix[i + 3] = alpha;
-		}
-
-		ctx.putImageData(imgd, 0, 0);
-	}
