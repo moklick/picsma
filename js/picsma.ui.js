@@ -6,7 +6,7 @@ var PicsmaUI = {
 
 	init: function() {
 		this.handleNavigation();
-	//	this.handleSettings();
+		this.handleSettings();
 		this.handleFilterButtons();
 		this.handleDownload();
 		this.handleUpload();
@@ -110,7 +110,7 @@ var PicsmaUI = {
 
 			} else {
 				$(this).addClass('active');
-				PicsmaUI.resetSlider();
+				//PicsmaUI.resetSlider();
 			}
 		});
 
@@ -167,7 +167,7 @@ var PicsmaUI = {
 			$("#slider-container").fadeOut("250");
 		});
 
-		setSliderValues();
+	//	setSliderValues();
 	},
 
 	resetSlider: function() {
