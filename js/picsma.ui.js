@@ -126,6 +126,7 @@ var PicsmaUI = {
         }
 
     }
+}
 
 	/* handleSettings: function() {
 
