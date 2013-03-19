@@ -124,35 +124,70 @@ window.picsma.filter = {
             for (var y = 0; y < h; y += size) {
 
                 r = g = b = c = 0;
-                x1 = ((x + size-1) >= w ? (w - 1) : (x + size-1));
-                y1 =  ((y + size-1) >= h ? (h - 1) : (y + size-1));
+                x1 = ((x + size - 1) >= w ? (w - 1) : (x + size - 1));
+                y1 = ((y + size - 1) >= h ? (h - 1) : (y + size - 1));
 
-                for (var xx = x1; xx >= x; xx=xx-1) {
-                    for (var yy = y1; yy >= y; yy=yy-1) {
-                        p= (yy*w+xx)*4;
-                        c=c+1;
-                        r=r+data[p];
-                        g=g+data[p+1];
-                        b=b+data[p+2];
+                for (var xx = x1; xx >= x; xx = xx - 1) {
+                    for (var yy = y1; yy >= y; yy = yy - 1) {
+                        p = (yy * w + xx) * 4;
+                        c = c + 1;
+                        r = r + data[p];
+                        g = g + data[p + 1];
+                        b = b + data[p + 2];
                     }
                 }
 
-                r=r/c;
-                g=g/c;
-                b=b/c;
+                r = r / c;
+                g = g / c;
+                b = b / c;
 
-                for (var xx = x1; xx >= x; xx=xx-1) {
-                    for (var yy = y1; yy >= y; yy=yy-1) {
-                        p= (yy*w+xx)*4;
-                        data[p]=r;
-                        data[p+1]=g;
-                        data[p+2]=b;
+                for (var xx = x1; xx >= x; xx = xx - 1) {
+                    for (var yy = y1; yy >= y; yy = yy - 1) {
+                        p = (yy * w + xx) * 4;
+                        data[p] = r;
+                        data[p + 1] = g;
+                        data[p + 2] = b;
                     }
                 }
 
             }
         }
+        ctx.putImageData(imgdata, 0, 0);
+    },
+
+
+    matrixFilter: function (matrix, divider) {
+
+
+    },
+    tiltShift: function (position, strength) {
+        if (!this.currentCanvas) return;
+        position = position < 0 ? 0 : position > 1 ? 1 : position;
+
+        var w = this.currentCanvas.width,
+            h = this.currentCanvas.height,
+            ctx = this.currentCanvas.getContext('2d'),
+            imgdata = ctx.getImageData(0, 0, w, h),
+            data = imgdata.data,
+            oriData = ctx.getImageData(0, 0, w, h).data,
+            r = new Float32Array(w),
+            g = new Float32Array(w),
+            b = new Float32Array(w),
+            y, x, yy, xx, i,j, r, rsq, mr, rr;
+        for (y = 0; y < h; y++) {
+            r = Math.abs(y / h - position) * strength;
+            mr=Math.ceil(r);
+            rr = r - (r = ~~r);
+            rsq = r * r;
+            for (i=-mr;i<=mr;i++)
+            for (x = 0; x < w; x++) {
+
+
+            }
+        }
 
         ctx.putImageData(imgdata, 0, 0);
+
+
     }
 }

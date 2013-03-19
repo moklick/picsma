@@ -1,3 +1,4 @@
+"use strict";
 if (typeof picsma == undefined)
     window.picsma = {};
 
@@ -29,9 +30,15 @@ window.picsma = {
                         picsma.filter.raster(10);
 
                     }
+                },
+                {
+                    name: 'tilt shift',
+                    func: function () {
+                        picsma.filter.tiltShift(.5,5);
 
-
+                    }
                 }
+
             ]
         },
         {}

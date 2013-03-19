@@ -3,7 +3,9 @@ $(document).ready(function() {
 });
 
 var PicsmaUI = {
-
+    contrastSlider:null,
+    brightnessSlider:null,
+    saturationSlider:null,
 	init: function() {
 		this.handleNavigation();
 		this.handleSettings();
@@ -74,15 +76,58 @@ var PicsmaUI = {
 
 	getSliderValues : function(){
 
-		var values = [
+	/*	var values = [
 			$('#contrast').slider("value"),
 			$('#brightness').slider("value"),
 			$('#saturation').slider("value")];
 
-		return values;
+		return values;   */
+        return [this.contrastSlider.val, this.brightnessSlider.val, this.saturationSlider.val];
 	},
+    handleSettings: function(){
+        this.contrastSlider=new Slider(0,2,.01,1,12,215);
+        document.getElementById('contrast').appendChild(this.contrastSlider.canvas);
 
-	handleSettings: function() {
+        this.brightnessSlider=new Slider(-256,128,1,0,12,215);
+        document.getElementById('brightness').appendChild(this.brightnessSlider.canvas);
+
+        this.saturationSlider=new Slider(0,2,.01,1,12,215);
+        document.getElementById('saturation').appendChild(this.saturationSlider.canvas);
+        resetSliders();
+        updateInputfields();
+        function resetSliders(){
+
+
+
+
+        }
+
+        function updateInputfields(){
+            $('#contrast-value').val(PicsmaUI.contrastSlider.val);
+            $('#brightness-value').val(PicsmaUI.brightnessSlider.val);
+            $('#saturation-value').val(PicsmaUI.saturationSlider.val);
+        }
+
+        function showSettings(){
+            updateInputfields();
+            updateBCS(PicsmaUI.brightnessSlider.val,PicsmaUI.contrastSlider.val,PicsmaUI.saturationSlider.val);
+        }
+
+        this.contrastSlider.onChange=function(){
+            showSettings();
+        }
+
+        this.brightnessSlider.onChange=function(){
+            showSettings()
+        }
+
+        this.saturationSlider.onChange=function(){
+            showSettings()
+        }
+
+    }
+
+	/* handleSettings: function() {
 
 		var setSliderValues = function(){
 			var values = PicsmaUI.getSliderValues();
@@ -118,7 +163,7 @@ var PicsmaUI = {
 		$("#slider-container").draggable();
 
 		//set initial values and handle onslide event
-		$("#slider-container > div").each(function() {
+/*		$("#slider-container > div").each(function() {
 			var id = $(this).attr("id");
 			var val = 0;
 			var min = 0;
@@ -146,7 +191,7 @@ var PicsmaUI = {
 					break;
 			}
 
-			$("#" + id).slider({
+			$(this).slider({
 				range: "min",
 				value: val,
 				min: min,
@@ -176,40 +221,5 @@ var PicsmaUI = {
 		$('#saturation').slider("option", "value", 1);
 	}
 
-
+  */
 }
-
-	function updateImage(contrast, brightness) {
-
-		//ctx.drawImage(image, 0, 0);
-		imgd = originalImageData;
-
-		//imgd = ctx.getImageData(0,0,image.width, image.height);
-
-		pix = imgd.data
-
-		for (var i = 0, n = pix.length; i < n; i += 4) {
-			//read pixel values
-			var r = pix[i];
-			var g = pix[i + 1];
-			var b = pix[i + 2];
-			var alpha = pix[i + 3];
-
-			var lum = 0.299 * r + 0.587 * g + 0.114 * b;
-			var cb = -0.168736 * r - 0.331264 * g + 0.5 * b;
-			var cr = 0.5 * r - 0.418688 * g - 0.081312 * b;
-
-			lum = contrast * (lum - 127.5) + 127.5 + brightness;
-
-			r = (lum + 1.402 * cr);
-			g = (lum - 0.3441 * cb - 0.7141 * cr);
-			b = (lum + 1.772 * cb);
-
-			pix[i] = r;
-			pix[i + 1] = g;
-			pix[i + 2] = b;
-			pix[i + 3] = alpha;
-		}
-
-		ctx.putImageData(imgd, 0, 0);
-	}

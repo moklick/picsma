@@ -1,3 +1,4 @@
+"use strict";
 var currentFilters = picsma.filters[0].variations;
 
 
@@ -97,11 +98,13 @@ function createLabCopy(canvas) {
 }
 
 $(function () {
+    var testSlider = new Slider(0,200,50,1,20,200);
+    document.getElementById('content').appendChild(testSlider.canvas);
     var dropArea = document;
     dropArea.addEventListener('dragenter', stopDefault, false);
     dropArea.addEventListener('dragover', stopDefault, false);
     dropArea.addEventListener('dragleave', stopDefault, false);
     dropArea.addEventListener('drop', dropHandler, false);
     loadPicture('img/ressources/example.jpg');
-    console.log($('#canvas')[0]);
+//    console.log($('#canvas')[0]);
 })
