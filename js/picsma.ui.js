@@ -76,25 +76,20 @@ var PicsmaUI = {
 
 	getSliderValues : function(){
 
-	/*	var values = [
-			$('#contrast').slider("value"),
-			$('#brightness').slider("value"),
-			$('#saturation').slider("value")];
-
-		return values;   */
         return [this.contrastSlider.val, this.brightnessSlider.val, this.saturationSlider.val];
 	},
     handleSettings: function(){
         this.contrastSlider=new Slider(0,2,.01,1,12,215);
         document.getElementById('contrast').appendChild(this.contrastSlider.canvas);
 
-        this.brightnessSlider=new Slider(-256,128,1,0,12,215);
+        this.brightnessSlider=new Slider(-256,256,1,0,12,215);
         document.getElementById('brightness').appendChild(this.brightnessSlider.canvas);
 
         this.saturationSlider=new Slider(0,2,.01,1,12,215);
         document.getElementById('saturation').appendChild(this.saturationSlider.canvas);
         resetSliders();
         updateInputfields();
+
         function resetSliders(){
 
 
@@ -103,9 +98,9 @@ var PicsmaUI = {
         }
 
         function updateInputfields(){
-            $('#contrast-value').val(PicsmaUI.contrastSlider.val);
-            $('#brightness-value').val(PicsmaUI.brightnessSlider.val);
-            $('#saturation-value').val(PicsmaUI.saturationSlider.val);
+            $('#contrast-value').val(PicsmaUI.contrastSlider.val.toFixed(2));
+            $('#brightness-value').val(PicsmaUI.brightnessSlider.val.toFixed(2));
+            $('#saturation-value').val(PicsmaUI.saturationSlider.val.toFixed(2));
         }
 
         function showSettings(){
@@ -258,4 +253,4 @@ var PicsmaUI = {
 		}
 
 		ctx.putImageData(imgd, 0, 0);
-	}
+	}  */

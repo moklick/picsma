@@ -72,14 +72,12 @@ function uploadFile(file) {
 }
 
 function updateBCS(b, c, s) {
-    console.log('updateBCS: '+b+', '+ c + ', '+s);
     var canvas = $('#canvas')[0];
     if (typeof canvas.labCopy == "undefined") createLabCopy(canvas);
     var ctx = canvas.getContext('2d'),
         img = ctx.getImageData(0, 0, canvas.width, canvas.height),
         data = img.data,
         p = 0, res = 0;
-    console.log(ctx);
 
     for (var i = canvas.labCopy.length - 1; i >= 0; i--) {
         res = pTools.ycc2rgb((canvas.labCopy[i][0]-128)*c+128+b, (canvas.labCopy[i][1]-128)*s+128, (canvas.labCopy[i][2]-128)*s+128);
@@ -98,8 +96,6 @@ function createLabCopy(canvas) {
 }
 
 $(function () {
-    var testSlider = new Slider(0,200,50,1,20,200);
-    document.getElementById('content').appendChild(testSlider.canvas);
     var dropArea = document;
     dropArea.addEventListener('dragenter', stopDefault, false);
     dropArea.addEventListener('dragover', stopDefault, false);

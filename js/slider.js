@@ -1,4 +1,5 @@
 function Slider(min, max, step, val, height, width) {
+    "use strict";
     this.val = val || 0;
     this.min = min || 0;
     this.max = max || 100;
@@ -6,6 +7,7 @@ function Slider(min, max, step, val, height, width) {
     this.onChange = null;
     this.height = height || 12;
     this.width = width || 150;
+    this.active=false;
     var self = this;
     var omm, omu;
     this.canvas = document.createElement('canvas');
@@ -16,6 +18,7 @@ function Slider(min, max, step, val, height, width) {
         e.preventDefault();
         omm = document.onmousemove;
         omu = document.onmouseup;
+        self.active=true;
         self.change(e.pageX- $(self.canvas).offset().left);
 
         document.onmousemove = function(e) {
@@ -29,6 +32,8 @@ function Slider(min, max, step, val, height, width) {
             omu && omu();
             document.onmousemove = omm;
             document.onmouseup = omu;
+            self.active=false;
+            self.draw();
         }
     }
     this.change = function(newX) {
@@ -42,11 +47,10 @@ function Slider(min, max, step, val, height, width) {
     }
     this.draw = function() {
         var ctx = this.ctx;
-        var hs = this.size / 2;
         ctx.clearRect(0,0,this.width,this.height);
         ctx.fillStyle = "rgba(0,0,0,.25)";
         ctx.fillRect(0, 0, this.width, this.height);
-        ctx.fillStyle ="#999";
+        ctx.fillStyle =this.active?"#ccc":"#999";
         ctx.fillRect(0,0,this.width*(this.val-this.min)/(this.max-this.min),this.height);
     }
     this.draw();

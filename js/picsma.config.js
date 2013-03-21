@@ -37,7 +37,18 @@ window.picsma = {
                         picsma.filter.tiltShift(.5,5);
 
                     }
+                },
+                {
+                    name: "neuer Filter",
+                    func: function(){
+                        picsma.filter.raster(15);
+                        picsma.filter.median(5);
+
+                    }
+
+
                 }
+
 
             ]
         },

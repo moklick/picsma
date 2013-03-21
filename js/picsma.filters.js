@@ -21,6 +21,7 @@ window.picsma.filter = {
             data[i] = data[i + 1] = data[i + 2] = ~~(data[i] * .299 + data[i + 1] * .587 + data[i + 2] * .114)
 
         ctx.putImageData(imgdata, 0, 0);
+        return window.picsma.filter;
     },
 
 
@@ -53,6 +54,7 @@ window.picsma.filter = {
 
         data.set(newdata);
         ctx.putImageData(imgdata, 0, 0);
+        return window.picsma.filter;
     },
 
 
@@ -107,6 +109,7 @@ window.picsma.filter = {
         }
 
         ctx.putImageData(imgdata, 0, 0);
+        return window.picsma.filter;
     },
 
 
@@ -153,11 +156,13 @@ window.picsma.filter = {
             }
         }
         ctx.putImageData(imgdata, 0, 0);
+        return window.picsma.filter;
     },
 
 
     matrixFilter: function (matrix, divider) {
 
+        return window.picsma.filter;
 
     },
     tiltShift: function (position, strength) {
@@ -187,7 +192,6 @@ window.picsma.filter = {
         }
 
         ctx.putImageData(imgdata, 0, 0);
-
-
+        return window.picsma.filter;
     }
 }
